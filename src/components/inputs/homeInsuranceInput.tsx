@@ -1,5 +1,6 @@
 import React from 'react';
 import './inputs.scss';
+import CircleButton from '../buttons/circleButton';
 
 interface HomeInsuranceInputProps {
   value: number;
@@ -30,13 +31,11 @@ const HomeInsuranceInput: React.FC<HomeInsuranceInputProps> = ({
       <label>
         Homeowners Insurance:
         <div className="input-container">
-          <button
-            className="circle-button"
-            onClick={handleDecrease}
+          <CircleButton
+            onClick={value > 0 ? handleDecrease : undefined}
             disabled={value <= 0}
-          >
-            -
-          </button>
+            text="-"
+          />
           <input
             type="number"
             value={value}
@@ -44,13 +43,11 @@ const HomeInsuranceInput: React.FC<HomeInsuranceInputProps> = ({
             min={0}
             max={99999}
           />
-          <button
-            className="circle-button"
-            onClick={handleIncrease}
-            disabled={value >= 99999}
-          >
-            +
-          </button>
+          <CircleButton
+            onClick={value < 99900 ? handleIncrease : undefined}
+            disabled={value > 99900}
+            text="+"
+          />
         </div>
       </label>
     </div>

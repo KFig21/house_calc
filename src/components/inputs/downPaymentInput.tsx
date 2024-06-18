@@ -1,5 +1,6 @@
 import React from 'react';
 import './inputs.scss';
+import CircleButton from '../buttons/circleButton';
 
 interface DownPaymentInputProps {
   value: number;
@@ -32,17 +33,13 @@ const DownPaymentInput: React.FC<DownPaymentInputProps> = ({
       <label>
         Down Payment Amount:
         <div className="input-container">
-          <button
-            className="circle-button"
-            onClick={handleDecrease}
+          <CircleButton
+            onClick={value > 1000 ? handleDecrease : undefined}
             disabled={value <= 1000}
-          >
-            -
-          </button>
+            text="-"
+          />
           <input type="number" value={value} onChange={handleChange} />
-          <button className="circle-button" onClick={handleIncrease}>
-            +
-          </button>
+          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
         </div>
       </label>
     </div>

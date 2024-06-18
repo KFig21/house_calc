@@ -1,5 +1,6 @@
 import React from 'react';
 import './inputs.scss';
+import CircleButton from '../buttons/circleButton';
 
 interface MonthlyDebtsInputProps {
   value: number;
@@ -30,6 +31,11 @@ const MonthlyDebtsInput: React.FC<MonthlyDebtsInputProps> = ({
       <label>
         Monthly Debts:
         <div className="input-container">
+          <CircleButton
+            onClick={value > 0 ? handleDecrease : undefined}
+            disabled={value <= 0}
+            text="-"
+          />
           <input
             type="number"
             value={value}
@@ -37,16 +43,7 @@ const MonthlyDebtsInput: React.FC<MonthlyDebtsInputProps> = ({
             min={0}
             max={99999}
           />
-          <button
-            className="circle-button"
-            onClick={handleDecrease}
-            disabled={value <= 0}
-          >
-            -
-          </button>
-          <button className="circle-button" onClick={handleIncrease}>
-            +
-          </button>
+          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
         </div>
       </label>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './inputs.scss';
+import CircleButton from '../buttons/circleButton';
 
 interface PropertyTaxInputProps {
   value: number;
@@ -30,13 +31,11 @@ const PropertyTaxInput: React.FC<PropertyTaxInputProps> = ({
       <label>
         Property Tax Rate (%):
         <div className="input-container">
-          <button
-            className="circle-button"
-            onClick={handleDecrease}
+          <CircleButton
+            onClick={value > 0 ? handleDecrease : undefined}
             disabled={value <= 0}
-          >
-            -
-          </button>
+            text="-"
+          />
           <input
             type="number"
             step="0.01"
@@ -44,9 +43,7 @@ const PropertyTaxInput: React.FC<PropertyTaxInputProps> = ({
             onChange={handleChange}
             min={0}
           />
-          <button className="circle-button" onClick={handleIncrease}>
-            +
-          </button>
+          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
         </div>
       </label>
     </div>

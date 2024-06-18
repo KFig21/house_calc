@@ -14,31 +14,6 @@
     align-items: center;
     margin-bottom: 10px;
   
-    .circle-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      width: 20px; // Set width and height to create a circle
-      height: 20px;
-      box-sizing: border-box;
-      border-radius: 50%; // Make it circular
-      cursor: pointer;
-      font-size: 1rem;
-      display: flex;
-      justify-content: center; // Center the text horizontally
-      align-items: center; // Center the text vertically
-      transition: background-color 0.2s ease; // Add smooth transition for hover effect
-  
-      &:hover {
-        background-color: red;
-      }
-  
-      &:disabled {
-        background-color: #cccccc;
-        cursor: not-allowed;
-      }
-    }
-  
     input, select {
       width: 100px;
       text-align: center;

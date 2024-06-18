@@ -3,7 +3,7 @@ import './App.css';
 import IncomeInput from './components/inputs/incomeInput';
 import DownPaymentInput from './components/inputs/downPaymentInput';
 import InterestRateInput from './components/inputs/interestRateInput';
-import MonthlyDebtsInput from './components/inputs/monthlyDepts';
+import MonthlyDebtsInput from './components/inputs/monthlyDebts';
 import PropertyTaxInput from './components/inputs/propertyTaxInput';
 import HomeInsuranceInput from './components/inputs/homeInsuranceInput';
 import HoaFeesInput from './components/inputs/hoaFeesInput';
