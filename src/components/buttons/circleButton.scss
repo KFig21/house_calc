@@ -1,6 +1,6 @@
 .circle-button {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-color);
   border: none;
   width: 20px;
   height: 20px;
@@ -18,7 +18,7 @@
   .sign{
     position: absolute;
     left: 50%;
-    top: 47%;
+    top: 50%;
     transform: translate(-50%, -50%);
     line-height: 0;
   }

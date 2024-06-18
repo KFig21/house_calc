@@ -1,0 +1,24 @@
+
+.theme-toggle-button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    justify-content: center; /* Center icon horizontally */
+    width: 32px; /* Adjust width as needed */
+    height: 32px; /* Adjust height as needed */
+    border-radius: 50%; /* Make it circular */
+    position: fixed;
+    right: 20px;
+    
+    svg {
+      font-size: 24px; /* Adjust icon size */
+    }
+
+    &:hover {
+      color: var(--button-background);
+    }
+  }

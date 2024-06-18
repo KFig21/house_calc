@@ -13,12 +13,12 @@ const CircleButton: React.FC<CircleButtonProps> = ({
   text,
 }) => {
   return (
-    <div
+    <button
       className={`circle-button ${disabled ? 'disabled' : ''}`}
       onClick={!disabled ? onClick : undefined}
     >
       <span className="sign">{text}</span>
-    </div>
+    </button>
   );
 };
 

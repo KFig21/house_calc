@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--background);
+    color: var(--color);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    border-bottom: solid 1px var(--border-color);
+    position: relative;
+    height: var(--nav-height);
+
+    .header-text {
+      margin: 0;
+      color: var(--text-color);
+      font-weight: 700;
+    }
+  }
+  
