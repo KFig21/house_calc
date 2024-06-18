@@ -27,18 +27,16 @@ const IncomeInput: React.FC<IncomeInputProps> = ({ value, onChange }) => {
 
   return (
     <div className="horizontal-input">
-      <label>
-        Annual Income:
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 1000 ? handleDecrease : undefined}
-            disabled={value <= 1000}
-            text="-"
-          />
-          <input type="number" value={value} onChange={handleChange} />
-          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
-        </div>
-      </label>
+      <label>Annual Income:</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 1000 ? handleDecrease : undefined}
+          disabled={value <= 1000}
+          text="-"
+        />
+        <input type="number" value={value} onChange={handleChange} />
+        <CircleButton onClick={handleIncrease} disabled={false} text="+" />
+      </div>
     </div>
   );
 };

@@ -28,24 +28,22 @@ const MonthlyDebtsInput: React.FC<MonthlyDebtsInputProps> = ({
 
   return (
     <div className="horizontal-input">
-      <label>
-        Monthly Debts:
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 0 ? handleDecrease : undefined}
-            disabled={value <= 0}
-            text="-"
-          />
-          <input
-            type="number"
-            value={value}
-            onChange={handleChange}
-            min={0}
-            max={99999}
-          />
-          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
-        </div>
-      </label>
+      <label>Monthly Debts:</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 0 ? handleDecrease : undefined}
+          disabled={value <= 0}
+          text="-"
+        />
+        <input
+          type="number"
+          value={value}
+          onChange={handleChange}
+          min={0}
+          max={99999}
+        />
+        <CircleButton onClick={handleIncrease} disabled={false} text="+" />
+      </div>
     </div>
   );
 };

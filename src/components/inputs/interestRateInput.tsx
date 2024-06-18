@@ -28,23 +28,21 @@ const InterestRateInput: React.FC<InterestRateInputProps> = ({
 
   return (
     <div className="horizontal-input">
-      <label>
-        Interest Rate (%):
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 0 ? handleDecrease : undefined}
-            disabled={value <= 0}
-            text="-"
-          />
-          <input
-            type="number"
-            step="0.01"
-            value={value}
-            onChange={handleChange}
-          />
-          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
-        </div>
-      </label>
+      <label>Interest Rate (%):</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 0 ? handleDecrease : undefined}
+          disabled={value <= 0}
+          text="-"
+        />
+        <input
+          type="number"
+          step="0.01"
+          value={value}
+          onChange={handleChange}
+        />
+        <CircleButton onClick={handleIncrease} disabled={false} text="+" />
+      </div>
     </div>
   );
 };

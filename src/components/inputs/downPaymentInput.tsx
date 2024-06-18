@@ -30,18 +30,16 @@ const DownPaymentInput: React.FC<DownPaymentInputProps> = ({
 
   return (
     <div className="horizontal-input">
-      <label>
-        Down Payment Amount:
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 1000 ? handleDecrease : undefined}
-            disabled={value <= 1000}
-            text="-"
-          />
-          <input type="number" value={value} onChange={handleChange} />
-          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
-        </div>
-      </label>
+      <label>Down Payment Amount:</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 1000 ? handleDecrease : undefined}
+          disabled={value <= 1000}
+          text="-"
+        />
+        <input type="number" value={value} onChange={handleChange} />
+        <CircleButton onClick={handleIncrease} disabled={false} text="+" />
+      </div>
     </div>
   );
 };

@@ -28,24 +28,22 @@ const PropertyTaxInput: React.FC<PropertyTaxInputProps> = ({
 
   return (
     <div className="horizontal-input">
-      <label>
-        Property Tax Rate (%):
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 0 ? handleDecrease : undefined}
-            disabled={value <= 0}
-            text="-"
-          />
-          <input
-            type="number"
-            step="0.01"
-            value={value}
-            onChange={handleChange}
-            min={0}
-          />
-          <CircleButton onClick={handleIncrease} disabled={false} text="+" />
-        </div>
-      </label>
+      <label>Property Tax Rate (%):</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 0 ? handleDecrease : undefined}
+          disabled={value <= 0}
+          text="-"
+        />
+        <input
+          type="number"
+          step="0.01"
+          value={value}
+          onChange={handleChange}
+          min={0}
+        />
+        <CircleButton onClick={handleIncrease} disabled={false} text="+" />
+      </div>
     </div>
   );
 };

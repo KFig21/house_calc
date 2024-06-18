@@ -25,28 +25,26 @@ const HoaFeesInput: React.FC<HoaFeesInputProps> = ({ value, onChange }) => {
 
   return (
     <div className="horizontal-input">
-      <label>
-        HOA Fees:
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 0 ? handleDecrease : undefined}
-            disabled={value <= 0}
-            text="-"
-          />
-          <input
-            type="number"
-            value={value}
-            onChange={handleChange}
-            min={0}
-            max={99999}
-          />
-          <CircleButton
-            onClick={value < 99900 ? handleIncrease : undefined}
-            disabled={value > 99900}
-            text="+"
-          />
-        </div>
-      </label>
+      <label>HOA Fees:</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 0 ? handleDecrease : undefined}
+          disabled={value <= 0}
+          text="-"
+        />
+        <input
+          type="number"
+          value={value}
+          onChange={handleChange}
+          min={0}
+          max={99999}
+        />
+        <CircleButton
+          onClick={value < 99900 ? handleIncrease : undefined}
+          disabled={value > 99900}
+          text="+"
+        />
+      </div>
     </div>
   );
 };

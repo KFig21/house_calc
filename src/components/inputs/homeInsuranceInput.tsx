@@ -28,28 +28,26 @@ const HomeInsuranceInput: React.FC<HomeInsuranceInputProps> = ({
 
   return (
     <div className="horizontal-input">
-      <label>
-        Homeowners Insurance:
-        <div className="input-container">
-          <CircleButton
-            onClick={value > 0 ? handleDecrease : undefined}
-            disabled={value <= 0}
-            text="-"
-          />
-          <input
-            type="number"
-            value={value}
-            onChange={handleChange}
-            min={0}
-            max={99999}
-          />
-          <CircleButton
-            onClick={value < 99900 ? handleIncrease : undefined}
-            disabled={value > 99900}
-            text="+"
-          />
-        </div>
-      </label>
+      <label>Homeowners Insurance:</label>
+      <div className="input-container">
+        <CircleButton
+          onClick={value > 0 ? handleDecrease : undefined}
+          disabled={value <= 0}
+          text="-"
+        />
+        <input
+          type="number"
+          value={value}
+          onChange={handleChange}
+          min={0}
+          max={99999}
+        />
+        <CircleButton
+          onClick={value < 99900 ? handleIncrease : undefined}
+          disabled={value > 99900}
+          text="+"
+        />
+      </div>
     </div>
   );
 };
