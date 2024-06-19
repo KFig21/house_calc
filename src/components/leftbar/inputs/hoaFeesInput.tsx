@@ -7,11 +7,11 @@ const HoaFeesInput: React.FC = () => {
   const { hoaFees, setHoaFees } = useAppContext();
 
   const handleDecrease = () => {
-    setHoaFees(Math.max(0, hoaFees - 100));
+    setHoaFees(Math.max(0, hoaFees - 50));
   };
 
   const handleIncrease = () => {
-    setHoaFees(Math.min(99999, hoaFees + 100));
+    setHoaFees(Math.min(99999, hoaFees + 50));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

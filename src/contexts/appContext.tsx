@@ -5,6 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
+import { formatToWholeDollarAmount } from '../utils/utils';
 
 interface Results {
   maxMonthlyPayment: string;
@@ -12,6 +13,21 @@ interface Results {
   totalInterest: string;
   closingCost: string;
   totalCost: string;
+}
+
+interface MonthlyBreakdown {
+  finances: {
+    housing: number;
+    debt: number;
+    expenses: number;
+    taxes: number;
+  };
+  payment: {
+    mortgage: number;
+    taxes: number;
+    insurance: number;
+    hoa: number;
+  };
 }
 
 interface AppContextProps {
@@ -33,9 +49,12 @@ interface AppContextProps {
   setHoaFees: React.Dispatch<React.SetStateAction<number>>;
   closingCosts: number;
   setClosingCosts: React.Dispatch<React.SetStateAction<number>>;
+  incomeTaxRate: number;
+  setIncomeTaxRate: React.Dispatch<React.SetStateAction<number>>;
   dtiPercentage: number;
   setDtiPercentage: React.Dispatch<React.SetStateAction<number>>;
   results: Results | null;
+  monthlyBreakdown: MonthlyBreakdown | null;
 }
 
 interface AppProviderProps {
@@ -50,12 +69,15 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [loanTerm, setLoanTerm] = useState<number>(30);
   const [interestRate, setInterestRate] = useState<number>(6.9);
   const [monthlyDebts, setMonthlyDebts] = useState<number>(250);
-  const [propertyTaxRate, setPropertyTaxRate] = useState<number>(1.2);
+  const [propertyTax, setPropertyTax] = useState<number>(6000);
   const [homeInsurance, setHomeInsurance] = useState<number>(0);
   const [hoaFees, setHoaFees] = useState<number>(0);
   const [closingCosts, setClosingCosts] = useState<number>(3.0);
   const [dtiPercentage, setDtiPercentage] = useState<number>(36);
+  const [incomeTaxRate, setIncomeTaxRate] = useState<number>(32);
 
+  const [monthlyBreakdown, setMonthlyBreakdown] =
+    useState<MonthlyBreakdown | null>(null);
   const [results, setResults] = useState<Results | null>(null);
 
   const calculate = () => {
@@ -64,9 +86,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const loanTermYears = parseInt(loanTerm.toString());
     const interestRateAnnual = parseFloat(interestRate.toString()) / 100;
     const monthlyDebtsAmount = parseFloat(monthlyDebts.toString());
-    const propertyTaxRateAnnual = parseFloat(propertyTaxRate.toString()) / 100;
-    const homeInsuranceMonthly = parseFloat(homeInsurance.toString());
-    const hoaFeesMonthly = parseFloat(hoaFees.toString());
+    const annual_PropertyTax = parseFloat(propertyTax.toString());
+    const monthly_HomeInsurance = parseFloat(homeInsurance.toString());
+    const monthly_HOA = parseFloat(hoaFees.toString());
 
     const monthlyIncome = income / 12;
     const monthlyInterestRate = interestRateAnnual / 12;
@@ -74,40 +96,22 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     const maxDTI = monthlyIncome * (dtiPercentage / 100);
     let maxMonthlyPayment =
-      maxDTI - monthlyDebtsAmount - homeInsuranceMonthly - hoaFeesMonthly;
+      maxDTI - monthlyDebtsAmount - monthly_HomeInsurance - monthly_HOA;
 
+    // monthly breakdown variables
+    const monthlyIncomeTax = monthlyIncome * (incomeTaxRate / 100);
+    const monthlyPersonalExpenses =
+      monthlyIncome - maxMonthlyPayment - monthlyDebtsAmount - monthlyIncomeTax;
+    const monthly_PropertyTax = annual_PropertyTax / 12;
+    const monthly_Mortgage =
+      maxMonthlyPayment -
+      monthly_PropertyTax -
+      monthly_HomeInsurance -
+      monthly_HOA;
+
+    // full breakdown variables
     let housePrice = 0;
     let loanAmount = 0;
-    let propertyTaxMonthly = 0;
-
-    // Iteratively adjust the maxMonthlyPayment to account for property taxes
-    for (let i = 0; i < 10; i++) {
-      loanAmount =
-        maxMonthlyPayment /
-        ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
-          ((1 + monthlyInterestRate) ** numberOfPayments - 1));
-      housePrice = loanAmount + downPaymentAmount;
-      propertyTaxMonthly = (propertyTaxRateAnnual * housePrice) / 12;
-      maxMonthlyPayment =
-        maxDTI -
-        monthlyDebtsAmount -
-        homeInsuranceMonthly -
-        hoaFeesMonthly -
-        propertyTaxMonthly;
-
-      if (
-        Math.abs(
-          maxMonthlyPayment -
-            (maxDTI -
-              monthlyDebtsAmount -
-              homeInsuranceMonthly -
-              hoaFeesMonthly -
-              propertyTaxMonthly)
-        ) < 1
-      ) {
-        break;
-      }
-    }
 
     // Calculate closing costs based on percentage
     const closingCost =
@@ -119,12 +123,27 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     const totalCost = totalPaid + downPaymentAmount + closingCost;
 
+    setMonthlyBreakdown({
+      finances: {
+        housing: maxMonthlyPayment,
+        debt: monthlyDebtsAmount,
+        expenses: monthlyPersonalExpenses,
+        taxes: monthlyIncomeTax,
+      },
+      payment: {
+        mortgage: monthly_Mortgage,
+        taxes: monthly_PropertyTax,
+        insurance: monthly_HomeInsurance,
+        hoa: monthly_HOA,
+      },
+    });
+
     setResults({
-      maxMonthlyPayment: maxMonthlyPayment.toFixed(0),
-      housePrice: housePrice.toFixed(0),
-      totalInterest: totalInterest.toFixed(0),
-      closingCost: closingCost.toFixed(0),
-      totalCost: totalCost.toFixed(0),
+      maxMonthlyPayment: formatToWholeDollarAmount(maxMonthlyPayment),
+      housePrice: formatToWholeDollarAmount(housePrice),
+      totalInterest: formatToWholeDollarAmount(totalInterest),
+      closingCost: formatToWholeDollarAmount(closingCost),
+      totalCost: formatToWholeDollarAmount(totalCost),
     });
   };
 
@@ -136,10 +155,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     loanTerm,
     interestRate,
     monthlyDebts,
-    propertyTaxRate,
+    propertyTax,
     homeInsurance,
     hoaFees,
     closingCosts,
+    incomeTaxRate,
     dtiPercentage,
   ]);
 
@@ -156,17 +176,20 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setInterestRate,
         monthlyDebts,
         setMonthlyDebts,
-        propertyTaxRate,
-        setPropertyTaxRate,
+        propertyTaxRate: propertyTax,
+        setPropertyTaxRate: setPropertyTax,
         homeInsurance,
         setHomeInsurance,
         hoaFees,
         setHoaFees,
         closingCosts,
         setClosingCosts,
+        incomeTaxRate,
+        setIncomeTaxRate,
         dtiPercentage,
         setDtiPercentage,
         results,
+        monthlyBreakdown,
       }}
     >
       {children}

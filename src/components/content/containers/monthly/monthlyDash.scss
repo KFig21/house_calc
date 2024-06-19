@@ -1,0 +1,48 @@
+.monthly-container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--container-background);
+    border-radius: 5px;
+    color: var(--text-color);
+    padding: 20px;
+    
+    .title{
+        font-weight: 500;
+        font-size: 1.25rem;
+        padding-bottom: 10px;
+    }
+
+    .breakdown{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        
+        .breakdown-section{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            .breakdown-header{
+                padding: 10px;
+            }
+
+            .breakdown-element{
+                padding: 2px;
+                width: 200px;
+                display: flex;
+                justify-content: space-between;
+    
+                .el-name{
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                }
+    
+                .el-value{
+                    font-size: 0.75rem;
+                    font-weight: 400;
+                }
+            }
+        }
+
+    }
+}

@@ -13,7 +13,8 @@ import Header from './components/header/header';
 import ClosingCostsInput from './components/leftbar/inputs/closingCostsInput';
 import DtiInput from './components/content/inputs/dtiSlider';
 import ResultsComponent from './components/content/containers/results_WIP';
-import MonthlyDash from './components/content/containers/monthlyDash';
+import MonthlyDash from './components/content/containers/monthly/monthlyDash';
+import IncomeTaxRateInput from './components/leftbar/inputs/incomeTaxInput';
 
 const App: React.FC = () => {
   return (
@@ -29,8 +30,9 @@ const App: React.FC = () => {
             <MonthlyDebtsInput />
             <PropertyTaxInput />
             <HomeInsuranceInput />
-            <ClosingCostsInput />
             <HoaFeesInput />
+            <ClosingCostsInput />
+            <IncomeTaxRateInput />
             <DtiInput />
           </div>
         </div>

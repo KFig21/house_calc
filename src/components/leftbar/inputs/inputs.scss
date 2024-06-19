@@ -1,6 +1,7 @@
 .horizontal-input {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   margin-bottom: 8px;
 
@@ -10,7 +11,6 @@
     gap: 5px;
     font-size: .75rem;
     font-weight: 600;
-    width: 120px;
     color: var(--text-color)
   }
 

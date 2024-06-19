@@ -3,39 +3,36 @@ import './inputs.scss';
 import CircleButton from '../../buttons/circleButton/circleButton';
 import { useAppContext } from '../../../contexts/appContext';
 
-const PropertyTaxInput: React.FC = () => {
-  const { propertyTaxRate, setPropertyTaxRate } = useAppContext();
+const IncomeTaxRateInput: React.FC = () => {
+  const { incomeTaxRate, setIncomeTaxRate } = useAppContext();
 
   const handleDecrease = () => {
-    setPropertyTaxRate(
-      Math.max(0, parseInt((propertyTaxRate - 100).toFixed(0)))
-    );
+    setIncomeTaxRate(Math.max(0, incomeTaxRate - 1));
   };
 
   const handleIncrease = () => {
-    setPropertyTaxRate(parseInt((propertyTaxRate + 100).toFixed(0)));
+    setIncomeTaxRate(incomeTaxRate + 1);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(e.target.value);
+    const newValue = parseInt(e.target.value);
     if (!isNaN(newValue) && newValue >= 0) {
-      setPropertyTaxRate(newValue);
+      setIncomeTaxRate(newValue);
     }
   };
 
   return (
     <div className="horizontal-input">
-      <label>Property Tax (annual):</label>
+      <label>Income Tax Rate (%):</label>
       <div className="input-container">
         <CircleButton
-          onClick={propertyTaxRate > 0 ? handleDecrease : undefined}
-          disabled={propertyTaxRate <= 0}
+          onClick={incomeTaxRate > 0 ? handleDecrease : undefined}
+          disabled={incomeTaxRate <= 0}
           text="-"
         />
         <input
           type="number"
-          step="100"
-          value={propertyTaxRate}
+          value={incomeTaxRate}
           onChange={handleChange}
           min={0}
         />
@@ -45,4 +42,4 @@ const PropertyTaxInput: React.FC = () => {
   );
 };
 
-export default PropertyTaxInput;
+export default IncomeTaxRateInput;

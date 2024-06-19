@@ -7,11 +7,11 @@ const HomeInsuranceInput: React.FC = () => {
   const { homeInsurance, setHomeInsurance } = useAppContext();
 
   const handleDecrease = () => {
-    setHomeInsurance(Math.max(0, homeInsurance - 100));
+    setHomeInsurance(Math.max(0, homeInsurance - 50));
   };
 
   const handleIncrease = () => {
-    setHomeInsurance(Math.min(99999, homeInsurance + 100));
+    setHomeInsurance(Math.min(99999, homeInsurance + 50));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
