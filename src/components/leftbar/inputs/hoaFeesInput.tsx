@@ -1,25 +1,23 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../buttons/circleButton';
+import CircleButton from '../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface HoaFeesInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const HoaFeesInput: React.FC = () => {
+  const { hoaFees, setHoaFees } = useAppContext();
 
-const HoaFeesInput: React.FC<HoaFeesInputProps> = ({ value, onChange }) => {
   const handleDecrease = () => {
-    onChange(Math.max(0, value - 100));
+    setHoaFees(Math.max(0, hoaFees - 100));
   };
 
   const handleIncrease = () => {
-    onChange(Math.min(99999, value + 100));
+    setHoaFees(Math.min(99999, hoaFees + 100));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
     if (!isNaN(newValue) && newValue >= 0 && newValue <= 99999) {
-      onChange(newValue);
+      setHoaFees(newValue);
     }
   };
 
@@ -28,20 +26,20 @@ const HoaFeesInput: React.FC<HoaFeesInputProps> = ({ value, onChange }) => {
       <label>HOA Fees:</label>
       <div className="input-container">
         <CircleButton
-          onClick={value > 0 ? handleDecrease : undefined}
-          disabled={value <= 0}
+          onClick={hoaFees > 0 ? handleDecrease : undefined}
+          disabled={hoaFees <= 0}
           text="-"
         />
         <input
           type="number"
-          value={value}
+          value={hoaFees}
           onChange={handleChange}
           min={0}
           max={99999}
         />
         <CircleButton
-          onClick={value < 99900 ? handleIncrease : undefined}
-          disabled={value > 99900}
+          onClick={hoaFees < 99900 ? handleIncrease : undefined}
+          disabled={hoaFees > 99900}
           text="+"
         />
       </div>

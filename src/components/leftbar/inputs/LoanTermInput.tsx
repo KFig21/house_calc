@@ -1,21 +1,19 @@
 import React from 'react';
 import './inputs.scss';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface LoanTermInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const LoanTermInput: React.FC = () => {
+  const { loanTerm, setLoanTerm } = useAppContext();
 
-const LoanTermInput: React.FC<LoanTermInputProps> = ({ value, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onChange(parseInt(e.target.value, 10));
+    setLoanTerm(parseInt(e.target.value, 10));
   };
 
   return (
     <div className="horizontal-input">
       <label>Loan Term (years):</label>
       <div className="input-container">
-        <select value={value} onChange={handleChange}>
+        <select value={loanTerm} onChange={handleChange}>
           <option value={15}>15</option>
           <option value={20}>20</option>
           <option value={30}>30</option>

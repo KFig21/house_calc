@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.scss';
-import ThemeToggleButton from '../buttons/themeToggle';
+import ThemeToggleButton from '../buttons/themeToggle/themeToggle';
 
 const Header: React.FC = () => {
   return (

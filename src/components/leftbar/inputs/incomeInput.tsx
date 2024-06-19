@@ -1,27 +1,25 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../buttons/circleButton';
+import CircleButton from '../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface IncomeInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const IncomeInput: React.FC = () => {
+  const { annualIncome, setAnnualIncome } = useAppContext();
 
-const IncomeInput: React.FC<IncomeInputProps> = ({ value, onChange }) => {
   const handleDecrease = () => {
-    if (value > 1000) {
-      onChange(value - 1000);
+    if (annualIncome > 1000) {
+      setAnnualIncome(annualIncome - 1000);
     }
   };
 
   const handleIncrease = () => {
-    onChange(value + 1000);
+    setAnnualIncome(annualIncome + 1000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
     if (!isNaN(newValue)) {
-      onChange(newValue);
+      setAnnualIncome(newValue);
     }
   };
 
@@ -30,11 +28,11 @@ const IncomeInput: React.FC<IncomeInputProps> = ({ value, onChange }) => {
       <label>Annual Income:</label>
       <div className="input-container">
         <CircleButton
-          onClick={value > 1000 ? handleDecrease : undefined}
-          disabled={value <= 1000}
+          onClick={annualIncome > 1000 ? handleDecrease : undefined}
+          disabled={annualIncome <= 1000}
           text="-"
         />
-        <input type="number" value={value} onChange={handleChange} />
+        <input type="number" value={annualIncome} onChange={handleChange} />
         <CircleButton onClick={handleIncrease} disabled={false} text="+" />
       </div>
     </div>

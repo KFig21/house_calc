@@ -1,50 +1,45 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../buttons/circleButton';
+import CircleButton from '../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface HomeInsuranceInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const HomeInsuranceInput: React.FC = () => {
+  const { homeInsurance, setHomeInsurance } = useAppContext();
 
-const HomeInsuranceInput: React.FC<HomeInsuranceInputProps> = ({
-  value,
-  onChange,
-}) => {
   const handleDecrease = () => {
-    onChange(Math.max(0, value - 100));
+    setHomeInsurance(Math.max(0, homeInsurance - 100));
   };
 
   const handleIncrease = () => {
-    onChange(Math.min(99999, value + 100));
+    setHomeInsurance(Math.min(99999, homeInsurance + 100));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
     if (!isNaN(newValue) && newValue >= 0 && newValue <= 99999) {
-      onChange(newValue);
+      setHomeInsurance(newValue);
     }
   };
 
   return (
     <div className="horizontal-input">
-      <label>Homeowners Insurance:</label>
+      <label>Homeowners Ins. :</label>
       <div className="input-container">
         <CircleButton
-          onClick={value > 0 ? handleDecrease : undefined}
-          disabled={value <= 0}
+          onClick={homeInsurance > 0 ? handleDecrease : undefined}
+          disabled={homeInsurance <= 0}
           text="-"
         />
         <input
           type="number"
-          value={value}
+          value={homeInsurance}
           onChange={handleChange}
           min={0}
           max={99999}
         />
         <CircleButton
-          onClick={value < 99900 ? handleIncrease : undefined}
-          disabled={value > 99900}
+          onClick={homeInsurance < 99900 ? handleIncrease : undefined}
+          disabled={homeInsurance > 99900}
           text="+"
         />
       </div>

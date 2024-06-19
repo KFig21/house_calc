@@ -1,28 +1,23 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../buttons/circleButton';
+import CircleButton from '../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface InterestRateInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const InterestRateInput: React.FC = () => {
+  const { interestRate, setInterestRate } = useAppContext();
 
-const InterestRateInput: React.FC<InterestRateInputProps> = ({
-  value,
-  onChange,
-}) => {
   const handleDecrease = () => {
-    onChange(Math.max(0, parseFloat((value - 0.1).toFixed(2))));
+    setInterestRate(Math.max(0, parseFloat((interestRate - 0.1).toFixed(2))));
   };
 
   const handleIncrease = () => {
-    onChange(parseFloat((value + 0.1).toFixed(2)));
+    setInterestRate(parseFloat((interestRate + 0.1).toFixed(2)));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);
     if (!isNaN(newValue)) {
-      onChange(newValue);
+      setInterestRate(newValue);
     }
   };
 
@@ -31,14 +26,14 @@ const InterestRateInput: React.FC<InterestRateInputProps> = ({
       <label>Interest Rate (%):</label>
       <div className="input-container">
         <CircleButton
-          onClick={value > 0 ? handleDecrease : undefined}
-          disabled={value <= 0}
+          onClick={interestRate > 0 ? handleDecrease : undefined}
+          disabled={interestRate <= 0}
           text="-"
         />
         <input
           type="number"
           step="0.01"
-          value={value}
+          value={interestRate}
           onChange={handleChange}
         />
         <CircleButton onClick={handleIncrease} disabled={false} text="+" />

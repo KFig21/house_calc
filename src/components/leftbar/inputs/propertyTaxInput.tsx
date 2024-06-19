@@ -1,44 +1,41 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../buttons/circleButton';
+import CircleButton from '../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface PropertyTaxInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const PropertyTaxInput: React.FC = () => {
+  const { propertyTaxRate, setPropertyTaxRate } = useAppContext();
 
-const PropertyTaxInput: React.FC<PropertyTaxInputProps> = ({
-  value,
-  onChange,
-}) => {
   const handleDecrease = () => {
-    onChange(Math.max(0, parseFloat((value - 0.1).toFixed(2))));
+    setPropertyTaxRate(
+      Math.max(0, parseFloat((propertyTaxRate - 0.1).toFixed(2)))
+    );
   };
 
   const handleIncrease = () => {
-    onChange(parseFloat((value + 0.1).toFixed(2)));
+    setPropertyTaxRate(parseFloat((propertyTaxRate + 0.1).toFixed(2)));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);
     if (!isNaN(newValue) && newValue >= 0) {
-      onChange(newValue);
+      setPropertyTaxRate(newValue);
     }
   };
 
   return (
     <div className="horizontal-input">
-      <label>Property Tax Rate (%):</label>
+      <label>Property Tax (%):</label>
       <div className="input-container">
         <CircleButton
-          onClick={value > 0 ? handleDecrease : undefined}
-          disabled={value <= 0}
+          onClick={propertyTaxRate > 0 ? handleDecrease : undefined}
+          disabled={propertyTaxRate <= 0}
           text="-"
         />
         <input
           type="number"
           step="0.01"
-          value={value}
+          value={propertyTaxRate}
           onChange={handleChange}
           min={0}
         />

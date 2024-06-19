@@ -1,28 +1,23 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../buttons/circleButton';
+import CircleButton from '../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../contexts/appContext';
 
-interface MonthlyDebtsInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+const MonthlyDebtsInput: React.FC = () => {
+  const { monthlyDebts, setMonthlyDebts } = useAppContext();
 
-const MonthlyDebtsInput: React.FC<MonthlyDebtsInputProps> = ({
-  value,
-  onChange,
-}) => {
   const handleDecrease = () => {
-    onChange(Math.max(0, value - 100));
+    setMonthlyDebts(Math.max(0, monthlyDebts - 100));
   };
 
   const handleIncrease = () => {
-    onChange(Math.min(99999, value + 100));
+    setMonthlyDebts(Math.min(99999, monthlyDebts + 100));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
     if (!isNaN(newValue) && newValue >= 0 && newValue <= 99999) {
-      onChange(newValue);
+      setMonthlyDebts(newValue);
     }
   };
 
@@ -31,13 +26,13 @@ const MonthlyDebtsInput: React.FC<MonthlyDebtsInputProps> = ({
       <label>Monthly Debts:</label>
       <div className="input-container">
         <CircleButton
-          onClick={value > 0 ? handleDecrease : undefined}
-          disabled={value <= 0}
+          onClick={monthlyDebts > 0 ? handleDecrease : undefined}
+          disabled={monthlyDebts <= 0}
           text="-"
         />
         <input
           type="number"
-          value={value}
+          value={monthlyDebts}
           onChange={handleChange}
           min={0}
           max={99999}
