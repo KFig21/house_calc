@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 8px;
+  height: 35px;
 
   label {
     display: flex;
@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: center;
     width: 150px;
+    min-width: 150px;
   
     input, select {
       width: 70px;

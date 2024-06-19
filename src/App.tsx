@@ -15,6 +15,7 @@ import DtiInput from './components/content/inputs/dtiSlider';
 import ResultsComponent from './components/content/containers/results_WIP';
 import MonthlyDash from './components/content/containers/monthly/monthlyDash';
 import IncomeTaxRateInput from './components/leftbar/inputs/incomeTaxInput';
+import DeductCCfomDPinput from './components/leftbar/inputs/dedcuctCCfromDPinput';
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             <HomeInsuranceInput />
             <HoaFeesInput />
             <ClosingCostsInput />
+            <DeductCCfomDPinput />
             <IncomeTaxRateInput />
             <DtiInput />
           </div>

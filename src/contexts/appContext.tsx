@@ -49,6 +49,8 @@ interface AppContextProps {
   setHoaFees: React.Dispatch<React.SetStateAction<number>>;
   closingCosts: number;
   setClosingCosts: React.Dispatch<React.SetStateAction<number>>;
+  deductCCfromDP: boolean;
+  setDeductCCfromDP: React.Dispatch<React.SetStateAction<boolean>>;
   incomeTaxRate: number;
   setIncomeTaxRate: React.Dispatch<React.SetStateAction<number>>;
   dtiPercentage: number;
@@ -73,6 +75,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [homeInsurance, setHomeInsurance] = useState<number>(0);
   const [hoaFees, setHoaFees] = useState<number>(0);
   const [closingCosts, setClosingCosts] = useState<number>(3.0);
+  const [deductCCfromDP, setDeductCCfromDP] = useState<boolean>(true);
   const [dtiPercentage, setDtiPercentage] = useState<number>(36);
   const [incomeTaxRate, setIncomeTaxRate] = useState<number>(32);
 
@@ -82,7 +85,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   const calculate = () => {
     const income = parseFloat(annualIncome.toString());
-    const downPaymentAmount = parseFloat(downPayment.toString());
     const loanTermYears = parseInt(loanTerm.toString());
     const interestRateAnnual = parseFloat(interestRate.toString()) / 100;
     const monthlyDebtsAmount = parseFloat(monthlyDebts.toString());
@@ -110,12 +112,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       monthly_HOA;
 
     // full breakdown variables
-    let housePrice = 0;
+    let housePrice = 400000;
     let loanAmount = 0;
 
     // Calculate closing costs based on percentage
     const closingCost =
       (parseFloat(closingCosts.toString()) / 100) * housePrice;
+    const downPaymentAmount = deductCCfromDP
+      ? parseFloat((downPayment - closingCost).toString())
+      : parseFloat(downPayment.toString());
+
+    console.log('downPayment', downPaymentAmount);
 
     // Calculate total interest paid
     const totalPaid = maxMonthlyPayment * numberOfPayments;
@@ -159,6 +166,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     homeInsurance,
     hoaFees,
     closingCosts,
+    deductCCfromDP,
     incomeTaxRate,
     dtiPercentage,
   ]);
@@ -184,6 +192,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setHoaFees,
         closingCosts,
         setClosingCosts,
+        deductCCfromDP,
+        setDeductCCfromDP,
         incomeTaxRate,
         setIncomeTaxRate,
         dtiPercentage,
