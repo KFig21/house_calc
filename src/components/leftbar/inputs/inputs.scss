@@ -95,7 +95,7 @@
         left: 5px;
       }
 
-      &:focus{
+      &:focus, &:hover {
         outline: none;
 
         .slider{

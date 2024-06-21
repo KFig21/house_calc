@@ -10,11 +10,6 @@ const DeductCCfomDPinput: React.FC = () => {
       <div className="horizontal-input">
         <label>Deduct CC from DP?</label>
         <div className="input-container">
-          {/* <input
-          type="checkbox"
-          checked={deductCCfromDP}
-          onChange={() => setDeductCCfromDP(!deductCCfromDP)}
-        /> */}
           <button
             className={`toggle-button status-switch ${
               deductCCfromDP ? 'active' : ''
@@ -22,7 +17,6 @@ const DeductCCfomDPinput: React.FC = () => {
             onClick={() => setDeductCCfromDP(!deductCCfromDP)}
           >
             <div className="status-span">{deductCCfromDP ? 'Yes' : 'No'}</div>
-
             <div className="slider"></div>
           </button>
         </div>
