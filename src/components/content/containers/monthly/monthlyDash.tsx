@@ -4,12 +4,21 @@ import { useAppContext } from '../../../../contexts/appContext';
 import { formatToWholeDollarAmount } from '../../../../utils/utils';
 
 const MonthlyDash: React.FC = () => {
-  const { monthlyBreakdown } = useAppContext();
+  const { monthlyBreakdown, annualIncome } = useAppContext();
 
   return (
     <div className="monthly-container">
       <div className="title">Monthly Breakdown</div>
       <div className="breakdown">
+        <div className="breakdown-section">
+          <div className="breakdown-header">Income</div>
+          <div className="breakdown-element">
+            <div className="el-name">Monthly (Pre-tax)</div>
+            <div className="el-value">
+              {formatToWholeDollarAmount(annualIncome / 12)}
+            </div>
+          </div>
+        </div>
         {/* finances */}
         <div className="breakdown-section">
           <div className="breakdown-header">Finances</div>
