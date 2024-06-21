@@ -1,4 +1,5 @@
 import { useAppContext } from '../../../contexts/appContext';
+import './dtiSlider.scss';
 
 const DtiInput: React.FC = () => {
   const { dtiPercentage, setDtiPercentage } = useAppContext();
@@ -18,13 +19,13 @@ const DtiInput: React.FC = () => {
           step="1"
           value={dtiPercentage}
           onChange={handleChange}
-          className="slider"
+          className="dtiSlider"
         />
         <input
           type="number"
           value={dtiPercentage}
           onChange={handleChange}
-          className="slider-input"
+          className="dtiSlider-input"
         />
       </div>
     </div>

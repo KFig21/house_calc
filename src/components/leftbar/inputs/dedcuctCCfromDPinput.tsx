@@ -6,16 +6,28 @@ const DeductCCfomDPinput: React.FC = () => {
   const { deductCCfromDP, setDeductCCfromDP } = useAppContext();
 
   return (
-    <div className="horizontal-input">
-      <label>Deduct CC from DP?</label>
-      <div className="input-container">
-        <input
+    <>
+      <div className="horizontal-input">
+        <label>Deduct CC from DP?</label>
+        <div className="input-container">
+          {/* <input
           type="checkbox"
           checked={deductCCfromDP}
           onChange={() => setDeductCCfromDP(!deductCCfromDP)}
-        />
+        /> */}
+          <button
+            className={`toggle-button status-switch ${
+              deductCCfromDP ? 'active' : ''
+            }`}
+            onClick={() => setDeductCCfromDP(!deductCCfromDP)}
+          >
+            <div className="status-span">{deductCCfromDP ? 'Yes' : 'No'}</div>
+
+            <div className="slider"></div>
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

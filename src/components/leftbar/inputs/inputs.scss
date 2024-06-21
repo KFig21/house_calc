@@ -34,5 +34,61 @@
       border-radius: 5px;
       box-sizing: border-box;
     }
+
+    // toggle
+    .toggle-button {
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+      background-color: var(--background);
+      border-radius: 13px;
+      position: relative;
+      cursor: pointer;
+      border: solid 1px var(--button-background);
+      
+      .status-span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 500;
+        color: var(--button-color);
+      }
+      
+      &.active {
+        background-color: var(--button-background);
+        border-color: var(--button-background);
+        
+        .status-span {
+          color: var(--button-color);
+        }
+        
+        .slider {
+          transform: translateX(24px);
+        }
+      }
+      
+      // used when conveying a message within the switch ex) 'complete'/'incomplete'
+      &.status-switch {
+        width: 100px;
+        
+        &.active {
+          .slider {
+            transform: translateX(74px);
+          }
+        }
+      }
+      
+      .slider {
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        transition: 0.4s;
+        left: 3px;
+      }
+    }
   }
 }
