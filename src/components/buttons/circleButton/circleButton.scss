@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center; /* Center the text horizontally */
   align-items: center; /* Center the text vertically */
-  transition: background-color 0.2s ease; /* Add smooth transition for hover effect */
+  transition: all 0.2s ease; /* Add smooth transition for hover effect */
   position: relative;
 
   .sign{
@@ -24,11 +24,16 @@
   }
 
   &:hover {
-    background-color: #0056b3;
+    transform: scale(1.15);
   }
 
   &.disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+  }
+
+  &:focus{
+    outline: none;
+    transform: scale(1.15);
   }
 }

@@ -30,9 +30,14 @@
       font-size: 0.75rem;
       background-color: var(--input-background);
       color: var(--text-color);
-      border: 1px solid #ccc;
+      border: 1px solid var(--input-border);
       border-radius: 5px;
       box-sizing: border-box;
+
+      &:focus{
+        outline: none;
+        border-color: var(--text-color);
+      }
     }
 
     // toggle
@@ -40,11 +45,11 @@
       display: inline-block;
       width: 50px;
       height: 26px;
-      background-color: var(--background);
+      background-color: var(--input-background);
       border-radius: 13px;
       position: relative;
       cursor: pointer;
-      border: solid 1px var(--button-background);
+      border: solid 1px var(--input-border);
       
       .status-span {
         position: absolute;
@@ -80,14 +85,25 @@
       }
       
       .slider {
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         background-color: white;
         border-radius: 50%;
         position: absolute;
-        top: 2px;
+        top: 4px;
         transition: 0.4s;
-        left: 3px;
+        left: 5px;
+      }
+
+      &:focus{
+        outline: none;
+
+        .slider{
+          width: 20px;
+          height: 20px;
+          top: 2px;
+          left: 3px;
+        }
       }
     }
   }
