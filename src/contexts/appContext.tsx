@@ -122,7 +122,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       ? parseFloat((downPayment - closingCost).toString())
       : parseFloat(downPayment.toString());
 
-    console.log('downPayment', downPaymentAmount);
+    // console.log('downPayment', downPaymentAmount);
 
     // Calculate total interest paid
     const totalPaid = maxMonthlyPayment * numberOfPayments;
