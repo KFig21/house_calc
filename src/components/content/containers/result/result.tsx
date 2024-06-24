@@ -8,13 +8,13 @@ const Result: React.FC = () => {
     <>
       {results ? (
         <div className="result-container">
-          <h2>Results</h2>
-          <p>Down Payment: {results.downPayment}</p>
-          <p>Closing Cost: {results.closingCost}</p>
-          <p>Max Monthly Payment: {results.maxMonthlyPayment}</p>
-          <p>Ideal House Price Range: {results.housePrice}</p>
-          <p>Total Interest Paid: {results.totalInterest}</p>
-          <p>Total Cost: {results.totalCost}</p>
+          <div className="title">Results</div>
+          <div>Down Payment: {results.downPayment}</div>
+          <div>Closing Cost: {results.closingCost}</div>
+          <div>Max Monthly Payment: {results.maxMonthlyPayment}</div>
+          <div>Ideal House Price Range: {results.housePrice}</div>
+          <div>Total Interest Paid: {results.totalInterest}</div>
+          <div>Total Cost: {results.totalCost}</div>
         </div>
       ) : (
         <span>Loading results</span>

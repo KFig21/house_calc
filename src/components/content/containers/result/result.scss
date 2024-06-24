@@ -1,7 +1,8 @@
 .result-container{
     display: flex;
     flex-direction: column;
-    background-color: var(--container-background);
+    // background-color: var(--container-background);
+    border: solid 1px var(--border-color);
     border-radius: 5px;
     color: var(--text-color);
     padding: 20px;
