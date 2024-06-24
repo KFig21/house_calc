@@ -12,7 +12,7 @@ import LoanTermInput from './components/leftbar/inputs/LoanTermInput';
 import Header from './components/header/header';
 import ClosingCostsInput from './components/leftbar/inputs/closingCostsInput';
 import DtiInput from './components/content/inputs/dtiSlider';
-import ResultsComponent from './components/content/containers/results_WIP';
+import Result from './components/content/containers/result/result';
 import MonthlyDash from './components/content/containers/monthly/monthlyDash';
 import IncomeTaxRateInput from './components/leftbar/inputs/incomeTaxInput';
 import DeductCCfomDPinput from './components/leftbar/inputs/dedcuctCCfromDPinput';
@@ -40,7 +40,7 @@ const App: React.FC = () => {
         </div>
         <div className="dashboard">
           <MonthlyDash />
-          {/* <ResultsComponent /> */}
+          <Result />
         </div>
       </div>
     </div>

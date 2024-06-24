@@ -8,10 +8,11 @@ import React, {
 import { formatToWholeDollarAmount } from '../utils/utils';
 
 interface Results {
+  downPayment: string;
+  closingCost: string;
   maxMonthlyPayment: string;
   housePrice: string;
   totalInterest: string;
-  closingCost: string;
   totalCost: string;
 }
 
@@ -72,11 +73,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [interestRate, setInterestRate] = useState<number>(6.9);
   const [monthlyDebts, setMonthlyDebts] = useState<number>(250);
   const [propertyTax, setPropertyTax] = useState<number>(6000);
-  const [homeInsurance, setHomeInsurance] = useState<number>(0);
-  const [hoaFees, setHoaFees] = useState<number>(0);
-  const [closingCosts, setClosingCosts] = useState<number>(3.0);
+  const [homeInsurance, setHomeInsurance] = useState<number>(67);
+  const [hoaFees, setHoaFees] = useState<number>(50);
+  const [closingCosts, setClosingCosts] = useState<number>(2.35);
   const [deductCCfromDP, setDeductCCfromDP] = useState<boolean>(true);
-  const [dtiPercentage, setDtiPercentage] = useState<number>(36);
+  const [dtiPercentage, setDtiPercentage] = useState<number>(33);
   const [incomeTaxRate, setIncomeTaxRate] = useState<number>(32);
 
   const [monthlyBreakdown, setMonthlyBreakdown] =
@@ -91,14 +92,18 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const annual_PropertyTax = parseFloat(propertyTax.toString());
     const monthly_HomeInsurance = parseFloat(homeInsurance.toString());
     const monthly_HOA = parseFloat(hoaFees.toString());
+    const annual_HomeInsurance = monthly_HomeInsurance * 12;
+    const annual_HOA = monthly_HOA * 12;
+    const full_HomeInsurance = annual_HomeInsurance * loanTermYears;
+    const full_HOA = annual_HOA * loanTermYears;
+    const full_PropertyTax = annual_PropertyTax * loanTermYears;
 
     const monthlyIncome = income / 12;
     const monthlyInterestRate = interestRateAnnual / 12;
     const numberOfPayments = loanTermYears * 12;
 
     const maxDTI = monthlyIncome * (dtiPercentage / 100);
-    let maxMonthlyPayment =
-      maxDTI - monthlyDebtsAmount - monthly_HomeInsurance - monthly_HOA;
+    let maxMonthlyPayment = maxDTI;
 
     // monthly breakdown variables
     const monthlyIncomeTax = monthlyIncome * (incomeTaxRate / 100);
@@ -112,23 +117,32 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       monthly_HOA;
 
     // full breakdown variables
-    let housePrice = 400000;
-    let loanAmount = 0;
+    let loanAmount =
+      monthly_Mortgage /
+      ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
+        ((1 + monthlyInterestRate) ** numberOfPayments - 1));
 
     // Calculate closing costs based on percentage
     const closingCost =
-      (parseFloat(closingCosts.toString()) / 100) * housePrice;
+      (parseFloat(closingCosts.toString()) / 100) * (loanAmount + downPayment);
     const downPaymentAmount = deductCCfromDP
       ? parseFloat((downPayment - closingCost).toString())
       : parseFloat(downPayment.toString());
-
-    // console.log('downPayment', downPaymentAmount);
+    let housePrice = loanAmount + downPaymentAmount;
 
     // Calculate total interest paid
+    // move these calcs to the component so you can break down the details better
     const totalPaid = maxMonthlyPayment * numberOfPayments;
-    const totalInterest = totalPaid - loanAmount;
-
-    const totalCost = totalPaid + downPaymentAmount + closingCost;
+    const totalInterest =
+      totalPaid - loanAmount - full_PropertyTax - full_HOA - full_HomeInsurance;
+    const totalCost =
+      loanAmount +
+      totalInterest +
+      downPaymentAmount +
+      closingCost +
+      full_PropertyTax +
+      full_HOA +
+      full_HomeInsurance;
 
     setMonthlyBreakdown({
       finances: {
@@ -146,10 +160,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     });
 
     setResults({
+      downPayment: formatToWholeDollarAmount(downPaymentAmount),
+      closingCost: formatToWholeDollarAmount(closingCost),
       maxMonthlyPayment: formatToWholeDollarAmount(maxMonthlyPayment),
       housePrice: formatToWholeDollarAmount(housePrice),
       totalInterest: formatToWholeDollarAmount(totalInterest),
-      closingCost: formatToWholeDollarAmount(closingCost),
       totalCost: formatToWholeDollarAmount(totalCost),
     });
   };
