@@ -16,6 +16,7 @@ import Result from './components/content/containers/result/result';
 import MonthlyDash from './components/content/containers/monthly/monthlyDash';
 import IncomeTaxRateInput from './components/leftbar/inputs/incomeTaxInput';
 import DeductCCfomDPinput from './components/leftbar/inputs/dedcuctCCfromDPinput';
+import AmortizationSchedule from './components/content/containers/amortization/amortization';
 
 const App: React.FC = () => {
   return (
@@ -39,8 +40,13 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="dashboard">
-          <MonthlyDash />
-          <Result />
+          <div className="upper">
+            <MonthlyDash />
+            <Result />
+          </div>
+          <div className="lower">
+            <AmortizationSchedule />
+          </div>
         </div>
       </div>
     </div>
