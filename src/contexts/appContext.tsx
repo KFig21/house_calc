@@ -41,6 +41,12 @@ interface AmortizationSchedule {
   monthly_Fees: number;
 }
 
+const baseAS = {
+  data: [],
+  monthly_Mortgage: 0,
+  monthly_Fees: 0,
+};
+
 interface AppContextProps {
   annualIncome: number;
   setAnnualIncome: React.Dispatch<React.SetStateAction<number>>;
@@ -68,7 +74,7 @@ interface AppContextProps {
   setDtiPercentage: React.Dispatch<React.SetStateAction<number>>;
   results: Results | null;
   monthlyBreakdown: MonthlyBreakdown | null;
-  amortizationSchedule: AmortizationSchedule | null;
+  amortizationSchedule: AmortizationSchedule;
 }
 
 interface AppProviderProps {
@@ -95,7 +101,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     useState<MonthlyBreakdown | null>(null);
   const [results, setResults] = useState<Results | null>(null);
   const [amortizationSchedule, setAmortizationSchedule] =
-    useState<AmortizationSchedule | null>(null);
+    useState<AmortizationSchedule>(baseAS);
 
   const calculate = () => {
     const income = parseFloat(annualIncome.toString());
@@ -157,16 +163,21 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       full_HOA +
       full_HomeInsurance;
 
+    const monthly_Fees =
+      monthly_PropertyTax + monthly_HomeInsurance + monthly_HOA;
+    const annual_fees = monthly_Fees * 12;
+
     const amortizationScheduleCalc = amortizationCalc(
       loanAmount,
       interestRate,
-      loanTerm
+      loanTerm,
+      annual_fees
     );
 
     setAmortizationSchedule({
       data: amortizationScheduleCalc,
       monthly_Mortgage: monthly_Mortgage,
-      monthly_Fees: monthly_PropertyTax + monthly_HomeInsurance + monthly_HOA,
+      monthly_Fees: monthly_Fees,
     });
 
     setMonthlyBreakdown({

@@ -2,13 +2,15 @@ export interface AmortizationScheduleEntry {
   year: number;
   interest: number;
   principal: number;
+  fees: number;
   balance: number;
 }
 
 export const amortizationCalc = (
   loanAmount: number,
   annualInterestRate: number,
-  loanTermYears: number
+  loanTermYears: number,
+  monthly_Fees: number
 ): AmortizationScheduleEntry[] => {
   const monthlyInterestRate = annualInterestRate / 12 / 100;
   const numberOfPayments = loanTermYears * 12;
@@ -40,6 +42,7 @@ export const amortizationCalc = (
         year,
         interest: interestPayment,
         principal: principalPayment,
+        fees: monthly_Fees,
         balance,
       });
     }
@@ -49,6 +52,7 @@ export const amortizationCalc = (
   schedule.forEach((entry) => {
     entry.interest = parseFloat(entry.interest.toFixed(2));
     entry.principal = parseFloat(entry.principal.toFixed(2));
+    entry.fees = parseFloat(entry.fees.toFixed(2));
     entry.balance = parseFloat(entry.balance.toFixed(2));
   });
 

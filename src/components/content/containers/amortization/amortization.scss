@@ -5,42 +5,77 @@
     border: solid 1px var(--border-color);
     border-radius: 5px;
     color: var(--text-color);
-    padding: 20px;
+    padding: 15px;
     margin: 10px;
     width: 100%;
-    
-    .title{
-        font-weight: 500;
-        font-size: 1.25rem;
-        padding-bottom: 10px;
-    }
 
-    .table{
+    .am-header{
         display: flex;
-        flex-direction: row;
-        gap: 6px;
-        height: 100%;
-
-        .year{
-            display: flex;
-            flex-direction: column;
+        justify-content: space-between;
+        
+        .title{
+            font-weight: 500;
+            font-size: 1.25rem;
+        }
+        
+        .yAxisTitle {
             height: 100%;
-            width: -webkit-fill-available;
-            border-radius: 4px;
-            overflow: hidden;
-            gap: 2px;
-
-            .tax{
-                background-color: var(--tax-bar-color);
+            width: 0px;
+            display: flex;
+            align-items: end;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--axis-color);
+    
+            &.left{
+                justify-content: start;
             }
-
-            .interest{
-                background-color: var(--interest-bar-color);
-            }
-
-            .principal{
-                background-color: var(--principal-bar-color);
+            &.right{
+                justify-content: end;
             }
         }
+    }
+
+    .table-container{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+
+        .fees{
+            fill: var(--tax-bar-color);
+        }
+
+        .interest{
+            fill: var(--interest-bar-color);
+        }
+
+        .principal{
+            fill: var(--principal-bar-color);
+        }
+
+        .balance{
+            circle {
+                fill: var(--balance-bar-color);
+                stroke: var(--balance-bar-color);
+            }
+                
+            path{
+                stroke: var(--balance-bar-color);
+            }
+        }
+
+        .active-dot{
+            fill: var(--active-dot-fill);
+            stroke: var(--active-dot-stroke);
+        }
+    }
+
+    .yAxis, .xAxis{
+        font-size: 14px;
+        fill: var(--axis-color);
+        
+        line{
+            stroke: var(--axis-color);
+            }
     }
 }

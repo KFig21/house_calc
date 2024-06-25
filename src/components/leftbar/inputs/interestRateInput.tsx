@@ -32,7 +32,7 @@ const InterestRateInput: React.FC = () => {
         />
         <input
           type="number"
-          step="0.01"
+          step="0.1"
           value={interestRate}
           onChange={handleChange}
         />

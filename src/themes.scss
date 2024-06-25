@@ -3,9 +3,11 @@
   --button-background: #1fa53a;
   --button-color: #f0f0f0;
 
-  --tax-bar-color:rgb(84, 145, 216);
-  --interest-bar-color: rgb(31, 86, 122);
+  --tax-bar-color:#67a9f4;
+  --interest-bar-color: #3472af;
   --principal-bar-color: #1fa53a;
+  --active-dot-fill: black;
+  --active-dot-stroke: white;
 }
 
 :root, [data-theme='dark'] {
@@ -15,6 +17,8 @@
   --border-color: #465278;
   --container-background:#333c59;
   --input-border: #7a7b80;
+  --axis-color: #84858a;
+  --balance-bar-color: white;
 }
 
 [data-theme='light'] {
@@ -24,4 +28,6 @@
   --border-color: #cccccc;
   --container-background: #e0dede;
   --input-border: #ccc;
+  --axis-color: #57585b;
+  --balance-bar-color: black;
 }

@@ -1,0 +1,50 @@
+.tooltip{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--input-background);
+    padding: 10px;
+    border-radius: 4px;
+    border: solid 1px var(--border-color);
+    font-size: 0.75rem;
+    margin: 12px;
+
+    .tooltip-header{
+        margin-bottom: 5px;
+        border-bottom: solid 1px var(--border-color);
+    }
+
+    .tooltip-data-container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+        
+        .tooltip-data-element{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            .tooltip-el-key{
+                margin-right: 10px;
+                font-weight: 600;
+
+                &.fees{
+                    color: var(--tax-bar-color);
+                }
+
+                &.interest{
+                    color: var(--interest-bar-color);
+                }
+
+                &.principal{
+                    color: var(--principal-bar-color);
+                }
+
+                &.balance{
+                    color: var(--balance-bar-color);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+.legend{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // height: min-content;
+
+    .legend-item{
+        padding: 0px 8px;
+
+        .item-name{
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        &.fees{
+            color: var(--tax-bar-color);
+            fill: var(--tax-bar-color);
+        }
+
+        &.interest{
+            color: var(--interest-bar-color);
+            fill: var(--interest-bar-color);
+        }
+
+        &.principal{
+            color: var(--principal-bar-color);
+            fill: var(--principal-bar-color);
+        }
+
+        &.balance{
+            color: var(--balance-bar-color);
+            fill: var(--balance-bar-color);
+            stroke: var(--balance-bar-color);
+        }
+
+        .legend-svg{
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+    }
+}
