@@ -17,6 +17,7 @@ import BalanceAxis from './components/axis/balanceAxis';
 import YearsAxis from './components/axis/yearsAxis';
 import LegendRender from './components/legend/legend';
 import HeaderLegend from './components/legend/headerLegend';
+import AmortizationModal from './components/modal/amortizationModal';
 
 const AmortizationSchedule: React.FC = () => {
   const { amortizationSchedule } = useAppContext();
@@ -25,7 +26,10 @@ const AmortizationSchedule: React.FC = () => {
     <div className="am-container">
       <div className="am-header">
         <div className="yAxisTitle left">Payments</div>
-        <div className="title">Mortgage Payment Info</div>
+        <div className="title">
+          <span>Mortgage Payment Info</span>
+          <AmortizationModal />
+        </div>
         <HeaderLegend />
         <div className="yAxisTitle right">Balance</div>
       </div>

@@ -1,0 +1,207 @@
+//transition effects
+//transition effects
+
+@keyframes modalUp {
+    0% {
+      top: 1000px;
+    }
+    100% {
+      top: 0px;
+    }
+  }
+  
+  @keyframes modalDown {
+    0% {
+      top: 0px;
+    }
+    100% {
+      top: 1000px;
+    }
+  }
+  @keyframes formUp {
+    0% {
+      top: 1000px;
+    }
+    100% {
+      top: 0px;
+    }
+  }
+  
+  @keyframes formDown {
+    0% {
+      top: 0px;
+    }
+    100% {
+      top: 1000px;
+    }
+  }
+  @keyframes blurIn {
+    50% {
+      backdrop-filter: blur(0px);
+    }
+    100% {
+      backdrop-filter: blur(6px);
+    }
+  }
+  
+  @keyframes blurOut {
+    0% {
+      backdrop-filter: blur(6px);
+    }
+    50% {
+      backdrop-filter: blur(0px);
+    }
+  }
+
+.modal-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    transition: all ease 1s;
+  
+    &.in {
+      animation: modalUp 1s ease;
+    }
+  
+    &.out {
+      animation: modalDown 1s ease;
+    }
+  
+    .modal-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: var(--input-background);
+      border: solid 1px var(--border-color);
+      padding: 15px;
+      z-index: 10;
+      border-radius: 4px;
+      max-height: 90vh;
+      overflow-y: overlay;
+      overflow-x: hidden;
+      position: relative;
+    //   width: 100%;
+    //   max-width: 576px;
+      transition: all ease 1s;
+  
+      &.in {
+        animation: formUp 1s ease;
+      }
+  
+      &.out {
+        animation: formDown 1s ease;
+      }
+
+      .close-button{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        height: 12px;
+        width: 12px;
+        border-radius: 100px;
+        background-color: rgba(206, 51, 77, 0.5);
+
+        &:hover{
+            background-color: rgb(206, 51, 77);
+        }
+      }
+
+      .modal-title{
+        margin-bottom: 12px;
+      }
+
+      .schedule {
+        display: flex;
+        flex-direction: column;
+        max-height: 80vh;
+        overflow: overlay;
+        position: relative;
+
+        .schedule-row{
+            font-size: 0.8rem;
+            display: grid;
+            grid-template-columns: 100px 100px 100px 100px 100px;
+            // padding: 2px;
+            align-items: center;
+            justify-content: center;
+
+            &.header{
+                position: sticky;
+                top: 0;
+                z-index: 2;
+                font-weight: 600;
+                min-height: 30px;
+                max-height: 30px;
+                padding: unset;
+
+                .column-title{
+
+                    &.fees{
+                        color: var(--tax-bar-color);
+                    }
+
+                    &.interest{
+                        color: var(--interest-bar-color);
+                    }
+
+                    &.principal{
+                        color: var(--principal-bar-color);
+                    }
+
+                    &.balance{
+                        color: var(--balance-bar-color);
+                    }
+                }
+            }
+
+            .row-title{
+                color: var(--axis-color);
+                border-right: solid 1px var(--border-color);
+            }
+
+            &:nth-child(even){
+                background-color: var(--row-nth-color);
+            }
+        }
+
+      }
+    }
+    
+    .modal-background {
+        justify-content: center;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        z-index: 5;
+        backdrop-filter: blur(6px);
+        background-color: rgba(0, 0, 0, 0.106);
+        
+        &.in {
+            animation: blurIn 1s ease;
+        }
+    
+        &.out {
+            animation: blurOut 1s ease;
+        }
+    }
+}
+
+.icon{
+    color: var(--axis-color);
+    margin-left: 10px;
+    cursor: pointer;
+    
+    &:hover{
+        color: var(--text-color);
+    }
+}
