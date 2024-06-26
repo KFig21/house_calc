@@ -32,8 +32,8 @@
             align-items: start;
 
             .breakdown-header{
-                padding: 5px;
-                margin: 5px;
+                padding: 5px 0px;
+                margin: 5px 0px;
                 font-weight: 600;
                 border-bottom: solid 1px var(--border-color);
             }
@@ -69,7 +69,6 @@
                     .el-percentage{
                         font-size: 0.75rem;
                         margin-right: 20px;
-                        // font-weight: 500;
                         color: var(--input-border)
                     }
                 }
