@@ -1,0 +1,10 @@
+.leftbar{
+    display: flex;
+    align-items: flex-start;
+    border-right: solid 1px var(--border-color);
+    padding: 20px;
+
+    .leftbar-container{
+        //
+    }
+}
