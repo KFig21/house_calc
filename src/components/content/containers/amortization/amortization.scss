@@ -18,6 +18,8 @@
             font-size: 1.25rem;
             display: flex;
             align-items: center;
+            border-bottom: solid 1px var(--border-color);
+            padding-bottom: 4px;
         }
         
         .yAxisTitle {

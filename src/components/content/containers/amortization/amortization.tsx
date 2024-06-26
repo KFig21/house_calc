@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
+  // Legend,
   ResponsiveContainer,
   Line,
 } from 'recharts';
@@ -15,7 +15,7 @@ import CustomTooltip from './components/tooltip/tooltip';
 import PaymentsAxis from './components/axis/paymentsAxis';
 import BalanceAxis from './components/axis/balanceAxis';
 import YearsAxis from './components/axis/yearsAxis';
-import LegendRender from './components/legend/legend';
+// import LegendRender from './components/legend/legend';
 import HeaderLegend from './components/legend/headerLegend';
 import AmortizationModal from './components/modal/amortizationModal';
 
