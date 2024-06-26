@@ -1,7 +1,5 @@
 import React from 'react';
 import './monthlyDash.scss';
-import { useAppContext } from '../../../../contexts/appContext';
-import { formatToWholeDollarAmount } from '../../../../utils/utils';
 import MonthlyFinances from './components/monthlyFinances';
 import MonthlyPayments from './components/monthlyPayments';
 import DtiInput from '../../inputs/dtiSlider';
