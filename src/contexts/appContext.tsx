@@ -122,12 +122,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const numberOfPayments = loanTermYears * 12;
 
     const maxDTI = monthlyIncome * (dtiPercentage / 100);
-    let maxMonthlyPayment = maxDTI;
+    let maxMonthlyPayment = maxDTI - monthlyDebtsAmount;
 
     // monthly breakdown variables
     const monthlyIncomeTax = monthlyIncome * (incomeTaxRate / 100);
-    const monthlyPersonalExpenses =
-      monthlyIncome - maxMonthlyPayment - monthlyDebtsAmount - monthlyIncomeTax;
+    const monthlyPersonalExpenses = monthlyIncome - maxDTI - monthlyIncomeTax;
     const monthly_PropertyTax = annual_PropertyTax / 12;
     const monthly_Mortgage =
       maxMonthlyPayment -
@@ -140,6 +139,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       monthly_Mortgage /
       ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
         ((1 + monthlyInterestRate) ** numberOfPayments - 1));
+
+    // FIX: loan amount does not change when deductCCfromDP changes
 
     // Calculate closing costs based on percentage
     const closingCost =
