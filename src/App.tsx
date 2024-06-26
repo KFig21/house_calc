@@ -36,7 +36,7 @@ const App: React.FC = () => {
             <ClosingCostsInput />
             <DeductCCfomDPinput />
             <IncomeTaxRateInput />
-            <DtiInput />
+            {/* <DtiInput /> */}
           </div>
         </div>
         <div className="dashboard">

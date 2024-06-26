@@ -3,11 +3,22 @@
   --button-background: #1fa53a;
   --button-color: #f0f0f0;
 
+  // Amortization table
   --tax-bar-color:#67a9f4;
   --interest-bar-color: #3472af;
   --principal-bar-color: #1fa53a;
   --active-dot-fill: black;
   --active-dot-stroke: white;
+
+  // DTI slider
+  --DTI-slider-height: 16px;
+  --DTI-green: #1fa53a;
+  --DTI-yellow: rgb(255, 202, 68);
+  --DTI-red: rgb(255, 35, 79);
+  --DTI-split-1a: 65%;
+  --DTI-split-1b: 66%;
+  --DTI-split-2a: 82%;
+  --DTI-split-2b: 83%;
 }
 
 :root, [data-theme='dark'] {

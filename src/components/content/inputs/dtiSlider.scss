@@ -1,10 +1,101 @@
-.horizontal-input{
+.dti-container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+
+    .monthly-payment{
+        padding-bottom: 4px;
+        border-bottom: solid 1px var(--border-color);
+
+        .key{
+            margin-right: 15px;;
+        }
+
+        .amount {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+    }
+
+    .below-input{
+        font-size: 0.75rem;
+    
+        .dti-label {
+            font-weight: 600;
+            white-space: nowrap;
+            margin-right: 12px;
+
+            &.green{
+                color: var(--DTI-green);
+            }
+
+            &.yellow{
+                color: var(--DTI-yellow);
+            }
+
+            &.red{
+                color: var(--DTI-red);
+            }
+        }
+
+        .explanation{
+            font-weight: 400;
+            font-style: italic;
+            color: var(--input-border)
+        }
+
+    }
 
     .input-container{
+        width: -webkit-fill-available;
         
         // need to completely rebuild this to make it custom
         .dtiSlider{
-            background: var(--button-background)
+            // background: var(--button-background)
+            display: flex;
+            align-items: center;justify-content: center;
+
+            .rc-slider-track {
+                background-color: transparent;
+                height: var(--DTI-slider-height);
+                border-radius: 100px;
+            }
+
+            .rc-slider-rail {
+                background: linear-gradient(to right, 
+                    var(--DTI-green) 0%, 
+                    var(--DTI-green) var(--DTI-split-1a), 
+
+                    var(--background) var(--DTI-split-1a), 
+                    var(--background) var(--DTI-split-1b), 
+
+                    var(--DTI-yellow) var(--DTI-split-1b), 
+                    var(--DTI-yellow) var(--DTI-split-2a), 
+
+                    var(--background) var(--DTI-split-2a), 
+                    var(--background) var(--DTI-split-2b), 
+
+                    var(--DTI-red) var(--DTI-split-2b));
+                height: var(--DTI-slider-height);
+                border: solid 1px var(--background);
+                border-radius: 100px;
+            }
+
+            .rc-slider-handle {
+                width: calc(var(--DTI-slider-height) + 6px);
+                height: calc(var(--DTI-slider-height) + 6px);
+                margin-top: 0px;
+                background-color: var(--button-color);
+                border-color: var(--background);
+                opacity: 100;
+
+                &.rc-slider-handle-dragging{
+                    box-shadow: 0 0 0 0px transparent !important;
+                }
+            }
         }
     }
 }
