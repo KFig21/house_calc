@@ -23,7 +23,7 @@ const ClosingCostsInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Closing Costs (%):</label>
+      <label>Closing Costs (%)</label>
       <div className="input-container">
         <CircleButton
           onClick={closingCosts > 0 ? handleDecrease : undefined}

@@ -23,7 +23,7 @@ const HomeInsuranceInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Homeowners Ins. :</label>
+      <label>Homeowners Ins.</label>
       <div className="input-container">
         <CircleButton
           onClick={homeInsurance > 0 ? handleDecrease : undefined}

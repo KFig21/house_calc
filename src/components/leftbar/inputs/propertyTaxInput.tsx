@@ -25,7 +25,7 @@ const PropertyTaxInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Property Tax (annual):</label>
+      <label>Property Tax (annual)</label>
       <div className="input-container">
         <CircleButton
           onClick={propertyTaxRate > 0 ? handleDecrease : undefined}

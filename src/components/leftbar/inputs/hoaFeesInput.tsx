@@ -23,7 +23,7 @@ const HoaFeesInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>HOA Fees:</label>
+      <label>HOA Fees</label>
       <div className="input-container">
         <CircleButton
           onClick={hoaFees > 0 ? handleDecrease : undefined}

@@ -23,7 +23,7 @@ const MonthlyDebtsInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Monthly Debts:</label>
+      <label>Monthly Debts</label>
       <div className="input-container">
         <CircleButton
           onClick={monthlyDebts > 0 ? handleDecrease : undefined}

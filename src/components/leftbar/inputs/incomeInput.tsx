@@ -25,7 +25,7 @@ const IncomeInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Annual Income:</label>
+      <label>Annual Income</label>
       <div className="input-container">
         <CircleButton
           onClick={annualIncome > 1000 ? handleDecrease : undefined}

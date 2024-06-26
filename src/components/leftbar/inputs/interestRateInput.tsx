@@ -23,7 +23,7 @@ const InterestRateInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Interest Rate (%):</label>
+      <label>Interest Rate (%)</label>
       <div className="input-container">
         <CircleButton
           onClick={interestRate > 0 ? handleDecrease : undefined}

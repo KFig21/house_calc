@@ -11,7 +11,7 @@ const LoanTermInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Loan Term (years):</label>
+      <label>Loan Term (years)</label>
       <div className="input-container">
         <select value={loanTerm} onChange={handleChange}>
           <option value={15}>15</option>

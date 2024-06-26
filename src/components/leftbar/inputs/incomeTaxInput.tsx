@@ -23,7 +23,7 @@ const IncomeTaxRateInput: React.FC = () => {
 
   return (
     <div className="horizontal-input">
-      <label>Income Tax Rate (%):</label>
+      <label>Income Tax Rate (%)</label>
       <div className="input-container">
         <CircleButton
           onClick={incomeTaxRate > 0 ? handleDecrease : undefined}
