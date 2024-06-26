@@ -2,7 +2,7 @@ import React from 'react';
 import './../../amortization.scss';
 
 const YearsAxis: React.FC = ({ ...args }: any) => {
-  const { x, y, stroke, payload } = args;
+  const { x, y, payload } = args;
 
   if (payload.value % 5 === 0) {
     return (

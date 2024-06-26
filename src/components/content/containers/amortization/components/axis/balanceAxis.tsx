@@ -3,7 +3,7 @@ import './../../amortization.scss';
 import { formatToWholeDollarAmount } from '../../../../../../utils/utils';
 
 const BalanceAxis: React.FC = ({ ...args }: any) => {
-  const { x, y, stroke, payload } = args;
+  const { x, y, payload } = args;
 
   return (
     <g transform={`translate(${x},${y})`}>
