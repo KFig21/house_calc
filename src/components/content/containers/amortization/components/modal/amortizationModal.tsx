@@ -58,6 +58,9 @@ const AmortizationModal: React.FC = () => {
                     );
                   }
                 )}
+                {/* CREATE A TOTALS ROW */}
+                {/* CREATE A TOTALS ROW */}
+                {/* CREATE A TOTALS ROW */}
               </div>
             </div>
           </div>

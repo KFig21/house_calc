@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <div className="dashboard">
           <div className="upper">
             <MonthlyDash />
-            {/* <Result /> */}
+            <Result />
           </div>
           <div className="lower">
             <AmortizationSchedule />

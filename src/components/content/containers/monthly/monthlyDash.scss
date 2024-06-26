@@ -69,13 +69,17 @@
                     .el-percentage{
                         font-size: 0.75rem;
                         margin-right: 20px;
-                        color: var(--input-border)
+                        color: var(--input-border);
+                        min-width: 40px;
+                        text-align: left;
                     }
                 }
     
                 .el-value{
                     font-size: 0.75rem;
                     font-weight: 400;
+                    min-width: 40px;
+                    text-align: right;
                 }
             }
         }
