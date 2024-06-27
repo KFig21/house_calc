@@ -33,6 +33,18 @@
   --row-nth-color: #28334c;
 }
 
+[data-theme='night'] {
+  --background: #171718;
+  --text-color: #ffffff;
+  --input-background: #1a2130;
+  --border-color: #4e5057;
+  --container-background:#333c59;
+  --input-border: #7a7b80;
+  --axis-color: #84858a;
+  --balance-bar-color: white;
+  --row-nth-color: #28334c;
+}
+
 [data-theme='light'] {
   --background: #f0f0f0;
   --text-color: #000000;

@@ -48,7 +48,7 @@
     // toggle
     .toggle-button {
       display: inline-block;
-      min-width: 120px;
+      width: 60px;
       height: 26px;
       background-color: var(--input-background);
       border-radius: 13px;
@@ -80,11 +80,11 @@
       
       // used when conveying a message within the switch ex) 'complete'/'incomplete'
       &.status-switch {
-        width: 100px;
+        min-width: 125px;
         
         &.active {
           .slider {
-            transform: translateX(93px);
+            transform: translateX(98px);
           }
         }
       }
