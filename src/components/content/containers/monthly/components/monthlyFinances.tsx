@@ -25,7 +25,7 @@ const MonthlyFinances: React.FC = () => {
           </div>
         </div>
         <div className="el-value">
-          {formatToWholeDollarAmount(monthlyBreakdown?.finances.housing)}{' '}
+          {formatToWholeDollarAmount(monthlyBreakdown?.finances.housing)}
         </div>
       </div>
       {/* Debts */}

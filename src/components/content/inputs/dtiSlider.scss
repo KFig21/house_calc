@@ -9,6 +9,10 @@
     .monthly-payment{
         padding-bottom: 4px;
         border-bottom: solid 1px var(--border-color);
+        width: 100%;
+        display: flex;
+        align-items: baseline;
+        justify-content: start;
 
         .key{
             margin-right: 15px;;
@@ -16,7 +20,7 @@
 
         .amount {
             font-weight: 600;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         }
     }
 
