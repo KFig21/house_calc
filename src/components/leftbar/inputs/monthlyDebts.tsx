@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './inputs.scss';
 import CircleButton from '../../buttons/circleButton/circleButton';
 import { useAppContext } from '../../../contexts/appContext';
+import {
+  formatNumberWithCommas,
+  parseCommaSeparatedNumber,
+} from '../../../utils/utils';
 
 const MonthlyDebtsInput: React.FC = () => {
   const { monthlyDebts, setMonthlyDebts } = useAppContext();
+  const [displayValue, setDisplayValue] = useState<string>(
+    formatNumberWithCommas(monthlyDebts)
+  );
+
+  useEffect(() => {
+    setDisplayValue(formatNumberWithCommas(monthlyDebts));
+  }, [monthlyDebts]);
 
   const handleDecrease = () => {
-    setMonthlyDebts(Math.max(0, monthlyDebts - 100));
+    const newValue = Math.max(0, monthlyDebts - 100);
+    setMonthlyDebts(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleIncrease = () => {
-    setMonthlyDebts(Math.min(99999, monthlyDebts + 100));
+    const newValue = Math.min(99999, monthlyDebts + 100);
+    setMonthlyDebts(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
-    if (!isNaN(newValue) && newValue >= 0 && newValue <= 99999) {
-      setMonthlyDebts(newValue);
+    const numericValue = parseCommaSeparatedNumber(e.target.value);
+    if (!isNaN(numericValue) && numericValue >= 0 && numericValue <= 99999) {
+      setMonthlyDebts(numericValue);
+      setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
@@ -31,8 +47,8 @@ const MonthlyDebtsInput: React.FC = () => {
           text="-"
         />
         <input
-          type="number"
-          value={monthlyDebts}
+          type="text"
+          value={displayValue}
           onChange={handleChange}
           min={0}
           max={99999}

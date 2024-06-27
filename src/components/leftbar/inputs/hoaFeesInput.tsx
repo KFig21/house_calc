@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './inputs.scss';
 import CircleButton from '../../buttons/circleButton/circleButton';
 import { useAppContext } from '../../../contexts/appContext';
+import {
+  formatNumberWithCommas,
+  parseCommaSeparatedNumber,
+} from '../../../utils/utils';
 
 const HoaFeesInput: React.FC = () => {
   const { hoaFees, setHoaFees } = useAppContext();
+  const [displayValue, setDisplayValue] = useState<string>(
+    formatNumberWithCommas(hoaFees)
+  );
+
+  useEffect(() => {
+    setDisplayValue(formatNumberWithCommas(hoaFees));
+  }, [hoaFees]);
 
   const handleDecrease = () => {
-    setHoaFees(Math.max(0, hoaFees - 50));
+    const newValue = Math.max(0, hoaFees - 50);
+    setHoaFees(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleIncrease = () => {
-    setHoaFees(Math.min(99999, hoaFees + 50));
+    const newValue = Math.min(99999, hoaFees + 50);
+    setHoaFees(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
-    if (!isNaN(newValue) && newValue >= 0 && newValue <= 99999) {
-      setHoaFees(newValue);
+    const numericValue = parseCommaSeparatedNumber(e.target.value);
+    if (!isNaN(numericValue) && numericValue >= 0 && numericValue <= 99999) {
+      setHoaFees(numericValue);
+      setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
@@ -31,8 +47,8 @@ const HoaFeesInput: React.FC = () => {
           text="-"
         />
         <input
-          type="number"
-          value={hoaFees}
+          type="text"
+          value={displayValue}
           onChange={handleChange}
           min={0}
           max={99999}

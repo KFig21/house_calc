@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './inputs.scss';
 import CircleButton from '../../buttons/circleButton/circleButton';
 import { useAppContext } from '../../../contexts/appContext';
+import {
+  formatNumberWithCommas,
+  parseCommaSeparatedNumber,
+} from '../../../utils/utils';
 
 const HomeInsuranceInput: React.FC = () => {
   const { homeInsurance, setHomeInsurance } = useAppContext();
+  const [displayValue, setDisplayValue] = useState<string>(
+    formatNumberWithCommas(homeInsurance)
+  );
+
+  useEffect(() => {
+    setDisplayValue(formatNumberWithCommas(homeInsurance));
+  }, [homeInsurance]);
 
   const handleDecrease = () => {
-    setHomeInsurance(Math.max(0, homeInsurance - 50));
+    const newValue = Math.max(0, homeInsurance - 50);
+    setHomeInsurance(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleIncrease = () => {
-    setHomeInsurance(Math.min(99999, homeInsurance + 50));
+    const newValue = Math.min(99999, homeInsurance + 50);
+    setHomeInsurance(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
-    if (!isNaN(newValue) && newValue >= 0 && newValue <= 99999) {
-      setHomeInsurance(newValue);
+    const numericValue = parseCommaSeparatedNumber(e.target.value);
+    if (!isNaN(numericValue) && numericValue >= 0 && numericValue <= 99999) {
+      setHomeInsurance(numericValue);
+      setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
@@ -31,8 +47,8 @@ const HomeInsuranceInput: React.FC = () => {
           text="-"
         />
         <input
-          type="number"
-          value={homeInsurance}
+          type="text"
+          value={displayValue}
           onChange={handleChange}
           min={0}
           max={99999}

@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './inputs.scss';
 import CircleButton from '../../buttons/circleButton/circleButton';
 import { useAppContext } from '../../../contexts/appContext';
+import {
+  formatNumberWithCommas,
+  parseCommaSeparatedNumber,
+} from '../../../utils/utils';
 
 const IncomeInput: React.FC = () => {
   const { annualIncome, setAnnualIncome } = useAppContext();
+  const [displayValue, setDisplayValue] = useState<string>(
+    formatNumberWithCommas(annualIncome)
+  );
+
+  useEffect(() => {
+    setDisplayValue(formatNumberWithCommas(annualIncome));
+  }, [annualIncome]);
 
   const handleDecrease = () => {
     if (annualIncome > 1000) {
-      setAnnualIncome(annualIncome - 1000);
+      const newValue = annualIncome - 1000;
+      setAnnualIncome(newValue);
+      setDisplayValue(formatNumberWithCommas(newValue));
     }
   };
 
   const handleIncrease = () => {
-    setAnnualIncome(annualIncome + 1000);
+    const newValue = annualIncome + 1000;
+    setAnnualIncome(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
-    if (!isNaN(newValue)) {
-      setAnnualIncome(newValue);
+    const numericValue = parseCommaSeparatedNumber(e.target.value);
+    if (!isNaN(numericValue)) {
+      setAnnualIncome(numericValue);
+      setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
@@ -32,7 +48,7 @@ const IncomeInput: React.FC = () => {
           disabled={annualIncome <= 1000}
           text="-"
         />
-        <input type="number" value={annualIncome} onChange={handleChange} />
+        <input type="text" value={displayValue} onChange={handleChange} />
         <CircleButton onClick={handleIncrease} disabled={false} text="+" />
       </div>
     </div>

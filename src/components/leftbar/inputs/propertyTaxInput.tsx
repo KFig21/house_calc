@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './inputs.scss';
 import CircleButton from '../../buttons/circleButton/circleButton';
 import { useAppContext } from '../../../contexts/appContext';
+import {
+  formatNumberWithCommas,
+  parseCommaSeparatedNumber,
+} from '../../../utils/utils';
 
 const PropertyTaxInput: React.FC = () => {
   const { propertyTaxRate, setPropertyTaxRate } = useAppContext();
+  const [displayValue, setDisplayValue] = useState<string>(
+    formatNumberWithCommas(propertyTaxRate)
+  );
+
+  useEffect(() => {
+    setDisplayValue(formatNumberWithCommas(propertyTaxRate));
+  }, [propertyTaxRate]);
 
   const handleDecrease = () => {
-    setPropertyTaxRate(
-      Math.max(0, parseInt((propertyTaxRate - 100).toFixed(0)))
-    );
+    const newValue = Math.max(0, parseInt((propertyTaxRate - 100).toFixed(0)));
+    setPropertyTaxRate(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleIncrease = () => {
-    setPropertyTaxRate(parseInt((propertyTaxRate + 100).toFixed(0)));
+    const newValue = parseInt((propertyTaxRate + 100).toFixed(0));
+    setPropertyTaxRate(newValue);
+    setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(e.target.value);
-    if (!isNaN(newValue) && newValue >= 0) {
-      setPropertyTaxRate(newValue);
+    const numericValue = parseCommaSeparatedNumber(e.target.value);
+    if (!isNaN(numericValue) && numericValue >= 0) {
+      setPropertyTaxRate(numericValue);
+      setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
@@ -33,9 +47,8 @@ const PropertyTaxInput: React.FC = () => {
           text="-"
         />
         <input
-          type="number"
-          step="100"
-          value={propertyTaxRate}
+          type="text"
+          value={displayValue}
           onChange={handleChange}
           min={0}
         />

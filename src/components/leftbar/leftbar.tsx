@@ -11,11 +11,16 @@ import ClosingCostsInput from './inputs/closingCostsInput';
 import IncomeTaxRateInput from './inputs/incomeTaxInput';
 import DeductCCfomDPinput from './inputs/dedcuctCCfromDPinput';
 import './leftbar.scss';
+import HouseInput from './inputs/houseInput';
+import CalcTypeInput from './inputs/calcTypeInput';
 
 const LeftBar: React.FC = () => {
   return (
     <div className="leftbar">
-      <div className="leftbar-contaier">
+      <div className="leftbar-container">
+        <CalcTypeInput />
+        <div className="break"></div>
+        <HouseInput />
         <IncomeInput />
         <DownPaymentInput />
         <LoanTermInput />

@@ -5,6 +5,12 @@
     padding: 20px;
 
     .leftbar-container{
-        //
+        
+        .break{
+            border-bottom: solid 1px var(--border-color);
+            height: 1px;
+            padding: 5px;
+            margin: 5px;
+        }
     }
 }

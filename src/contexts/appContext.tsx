@@ -65,6 +65,10 @@ const baseResults = {
 };
 
 interface AppContextProps {
+  calcType: boolean; // true = house budget, false = mortgage calc
+  setCalcType: React.Dispatch<React.SetStateAction<boolean>>;
+  houseValue: number;
+  setHouseValue: React.Dispatch<React.SetStateAction<number>>;
   annualIncome: number;
   setAnnualIncome: React.Dispatch<React.SetStateAction<number>>;
   downPayment: number;
@@ -101,6 +105,8 @@ interface AppProviderProps {
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+  const [calcType, setCalcType] = useState<boolean>(true);
+  const [houseValue, setHouseValue] = useState<number>(400000);
   const [annualIncome, setAnnualIncome] = useState<number>(100000);
   const [downPayment, setDownPayment] = useState<number>(100000);
   const [loanTerm, setLoanTerm] = useState<number>(30);
@@ -121,6 +127,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     useState<AmortizationSchedule>(baseAS);
 
   const calculate = () => {
+    const houseAmount = parseFloat(houseValue.toString());
     const income = parseFloat(annualIncome.toString());
     const loanTermYears = parseInt(loanTerm.toString());
     const interestRateAnnual = parseFloat(interestRate.toString()) / 100;
@@ -234,6 +241,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   useEffect(() => {
     calculate();
   }, [
+    calcType,
+    houseValue,
     annualIncome,
     downPayment,
     loanTerm,
@@ -251,6 +260,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        calcType,
+        setCalcType,
+        houseValue,
+        setHouseValue,
         annualIncome,
         setAnnualIncome,
         downPayment,

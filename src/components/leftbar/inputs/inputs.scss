@@ -5,6 +5,10 @@
   gap: 10px;
   height: 35px;
 
+  &.disabled {
+    opacity: .5;
+  }
+
   label {
     display: flex;
     align-items: center;
@@ -44,7 +48,7 @@
     // toggle
     .toggle-button {
       display: inline-block;
-      width: 50px;
+      min-width: 120px;
       height: 26px;
       background-color: var(--input-background);
       border-radius: 13px;
@@ -80,7 +84,7 @@
         
         &.active {
           .slider {
-            transform: translateX(74px);
+            transform: translateX(93px);
           }
         }
       }
