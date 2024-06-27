@@ -44,7 +44,6 @@ interface AmortizationSchedule {
   monthly_Fees: number;
 }
 
-// base values
 const baseAS = {
   data: [],
   monthly_Mortgage: 0,
@@ -127,7 +126,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     useState<AmortizationSchedule>(baseAS);
 
   const calculate = () => {
-    const houseAmount = parseFloat(houseValue.toString());
     const income = parseFloat(annualIncome.toString());
     const loanTermYears = parseInt(loanTerm.toString());
     const interestRateAnnual = parseFloat(interestRate.toString()) / 100;
@@ -144,38 +142,65 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const monthlyIncome = income / 12;
     const monthlyInterestRate = interestRateAnnual / 12;
     const numberOfPayments = loanTermYears * 12;
-
-    const maxDTI = monthlyIncome * (dtiPercentage / 100);
+    let maxDTI = monthlyIncome * (dtiPercentage / 100);
     let maxMonthlyPayment = maxDTI - monthlyDebtsAmount;
 
     // monthly breakdown variables
     const monthlyIncomeTax = monthlyIncome * (incomeTaxRate / 100);
     const monthlyPersonalExpenses = monthlyIncome - maxDTI - monthlyIncomeTax;
     const monthly_PropertyTax = annual_PropertyTax / 12;
-    const monthly_Mortgage =
+    let monthly_Mortgage =
       maxMonthlyPayment -
       monthly_PropertyTax -
       monthly_HomeInsurance -
       monthly_HOA;
 
-    // full breakdown variables
-    let loanAmount =
-      monthly_Mortgage /
-      ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
-        ((1 + monthlyInterestRate) ** numberOfPayments - 1));
+    let loanAmount, housePrice;
+    let closingCost, downPaymentAmount;
 
-    // FIX: loan amount does not change when deductCCfromDP changes
+    if (calcType) {
+      // BUDGET CALC
+      loanAmount =
+        monthly_Mortgage /
+        ((monthlyInterestRate * (1 + monthlyInterestRate) ** numberOfPayments) /
+          ((1 + monthlyInterestRate) ** numberOfPayments - 1));
+      closingCost =
+        (parseFloat(closingCosts.toString()) / 100) *
+        (loanAmount + downPayment);
+      downPaymentAmount = deductCCfromDP
+        ? parseFloat((downPayment - closingCost).toString())
+        : parseFloat(downPayment.toString());
+      housePrice = loanAmount + downPaymentAmount;
+    } else {
+      // MORTGAGE CALC
+      housePrice = parseFloat(houseValue.toString());
+      const estimatedClosingCost =
+        (parseFloat(closingCosts.toString()) / 100) * housePrice;
+      downPaymentAmount = deductCCfromDP
+        ? parseFloat((downPayment - estimatedClosingCost).toString())
+        : parseFloat(downPayment.toString());
+      loanAmount = housePrice - downPaymentAmount;
+      closingCost =
+        (parseFloat(closingCosts.toString()) / 100) *
+        (loanAmount + downPayment);
 
-    // Calculate closing costs based on percentage
-    const closingCost =
-      (parseFloat(closingCosts.toString()) / 100) * (loanAmount + downPayment);
-    const downPaymentAmount = deductCCfromDP
-      ? parseFloat((downPayment - closingCost).toString())
-      : parseFloat(downPayment.toString());
-    let housePrice = loanAmount + downPaymentAmount;
+      // recalc
+      monthly_Mortgage =
+        (loanAmount *
+          (monthlyInterestRate *
+            Math.pow(1 + monthlyInterestRate, numberOfPayments))) /
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
 
-    // Calculate total interest paid
-    // move these calcs to the component so you can break down the details better
+      maxMonthlyPayment =
+        monthly_Mortgage +
+        monthly_HOA +
+        monthly_HomeInsurance +
+        monthly_PropertyTax;
+
+      maxDTI = ((maxMonthlyPayment + monthlyDebtsAmount) / monthlyIncome) * 100;
+      setDtiPercentage(maxDTI);
+    }
+
     const totalPaid = maxMonthlyPayment * numberOfPayments;
     const totalInterest =
       totalPaid -
@@ -184,10 +209,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       total_HOA -
       total_HomeInsurance;
     const totalCost =
-      loanAmount +
-      totalInterest +
-      downPaymentAmount +
+      housePrice +
       closingCost +
+      totalInterest +
       total_PropertyTax +
       total_HOA +
       total_HomeInsurance;

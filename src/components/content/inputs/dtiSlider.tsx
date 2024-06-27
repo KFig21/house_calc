@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useAppContext } from '../../../contexts/appContext';
 import { formatToWholeDollarAmount } from '../../../utils/utils';
 import './dtiSlider.scss';
@@ -5,11 +6,19 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 const DtiInput: React.FC = () => {
-  const { dtiPercentage, setDtiPercentage, monthlyBreakdown } = useAppContext();
+  const { dtiPercentage, setDtiPercentage, monthlyBreakdown, calcType } =
+    useAppContext();
+  const [sliderValue, setSliderValue] = useState(dtiPercentage);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDtiPercentage(parseFloat(e.toString()));
   };
+
+  useEffect(() => {
+    if (!calcType) {
+      setSliderValue(dtiPercentage);
+    }
+  }, [dtiPercentage]);
 
   return (
     <div className="dti-container">
@@ -24,9 +33,10 @@ const DtiInput: React.FC = () => {
           min={10}
           max={50}
           step={1}
-          defaultValue={dtiPercentage}
+          defaultValue={!calcType ? sliderValue : dtiPercentage}
+          value={!calcType ? sliderValue : dtiPercentage}
           onChange={(e: any) => handleChange(e)}
-          disabled={false}
+          disabled={!calcType}
           className="dtiSlider"
         />
       </div>
@@ -39,7 +49,7 @@ const DtiInput: React.FC = () => {
           ${dtiPercentage > 43 && 'red'}
           `}
         >
-          Debt/Income ({dtiPercentage}%)
+          Debt/Income ({Math.round(dtiPercentage)}%)
         </label>
         <span className="explanation">(housing + debt) / Monthly Income</span>
       </div>
