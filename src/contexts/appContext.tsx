@@ -5,19 +5,22 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
-import { formatToWholeDollarAmount } from '../utils/utils';
 import {
   AmortizationScheduleEntry,
   amortizationCalc,
 } from '../utils/ammortizationCalc';
 
 interface Results {
-  downPayment: string;
-  closingCost: string;
-  maxMonthlyPayment: string;
-  housePrice: string;
-  totalInterest: string;
-  totalCost: string;
+  downPayment: number;
+  closingCost: number;
+  maxMonthlyPayment: number;
+  totalHOA: number;
+  totalInsurance: number;
+  totalPropertyTax: number;
+  loanAmount: number;
+  housePrice: number;
+  totalInterest: number;
+  totalCost: number;
 }
 
 interface MonthlyBreakdown {
@@ -41,10 +44,24 @@ interface AmortizationSchedule {
   monthly_Fees: number;
 }
 
+// base values
 const baseAS = {
   data: [],
   monthly_Mortgage: 0,
   monthly_Fees: 0,
+};
+
+const baseResults = {
+  downPayment: 0,
+  closingCost: 0,
+  maxMonthlyPayment: 0,
+  totalHOA: 0,
+  totalInsurance: 0,
+  totalPropertyTax: 0,
+  loanAmount: 0,
+  housePrice: 0,
+  totalInterest: 0,
+  totalCost: 0,
 };
 
 interface AppContextProps {
@@ -72,7 +89,7 @@ interface AppContextProps {
   setIncomeTaxRate: React.Dispatch<React.SetStateAction<number>>;
   dtiPercentage: number;
   setDtiPercentage: React.Dispatch<React.SetStateAction<number>>;
-  results: Results | null;
+  results: Results;
   monthlyBreakdown: MonthlyBreakdown | null;
   amortizationSchedule: AmortizationSchedule;
 }
@@ -99,7 +116,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   const [monthlyBreakdown, setMonthlyBreakdown] =
     useState<MonthlyBreakdown | null>(null);
-  const [results, setResults] = useState<Results | null>(null);
+  const [results, setResults] = useState<Results>(baseResults);
   const [amortizationSchedule, setAmortizationSchedule] =
     useState<AmortizationSchedule>(baseAS);
 
@@ -113,9 +130,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const monthly_HOA = parseFloat(hoaFees.toString());
     const annual_HomeInsurance = monthly_HomeInsurance * 12;
     const annual_HOA = monthly_HOA * 12;
-    const full_HomeInsurance = annual_HomeInsurance * loanTermYears;
-    const full_HOA = annual_HOA * loanTermYears;
-    const full_PropertyTax = annual_PropertyTax * loanTermYears;
+    const total_HomeInsurance = annual_HomeInsurance * loanTermYears;
+    const total_HOA = annual_HOA * loanTermYears;
+    const total_PropertyTax = annual_PropertyTax * loanTermYears;
 
     const monthlyIncome = income / 12;
     const monthlyInterestRate = interestRateAnnual / 12;
@@ -154,15 +171,19 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     // move these calcs to the component so you can break down the details better
     const totalPaid = maxMonthlyPayment * numberOfPayments;
     const totalInterest =
-      totalPaid - loanAmount - full_PropertyTax - full_HOA - full_HomeInsurance;
+      totalPaid -
+      loanAmount -
+      total_PropertyTax -
+      total_HOA -
+      total_HomeInsurance;
     const totalCost =
       loanAmount +
       totalInterest +
       downPaymentAmount +
       closingCost +
-      full_PropertyTax +
-      full_HOA +
-      full_HomeInsurance;
+      total_PropertyTax +
+      total_HOA +
+      total_HomeInsurance;
 
     const monthly_Fees =
       monthly_PropertyTax + monthly_HomeInsurance + monthly_HOA;
@@ -197,12 +218,16 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     });
 
     setResults({
-      downPayment: formatToWholeDollarAmount(downPaymentAmount),
-      closingCost: formatToWholeDollarAmount(closingCost),
-      maxMonthlyPayment: formatToWholeDollarAmount(maxMonthlyPayment),
-      housePrice: formatToWholeDollarAmount(housePrice),
-      totalInterest: formatToWholeDollarAmount(totalInterest),
-      totalCost: formatToWholeDollarAmount(totalCost),
+      downPayment: downPaymentAmount,
+      closingCost: closingCost,
+      maxMonthlyPayment: maxMonthlyPayment,
+      totalHOA: total_HOA,
+      totalInsurance: total_HomeInsurance,
+      totalPropertyTax: total_PropertyTax,
+      loanAmount: loanAmount,
+      housePrice: housePrice,
+      totalInterest: totalInterest,
+      totalCost: totalCost,
     });
   };
 
