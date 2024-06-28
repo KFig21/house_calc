@@ -12,7 +12,7 @@
     .content{
         display: flex;
         flex-direction: row;
-        height: calc(100vh - var(--nav-height) - 22px);
+        height: 100vh;
         overflow: hidden;
 
         .dashboard {

@@ -52,7 +52,7 @@
                     border-top: solid 1px var(--border-color);
                     margin-top: 6px;
                     padding: 6px;
-                    background-color: rgba(255, 255, 255, 0.05);
+                    background-color: var(--total-row-background);
                 }
 
                 // outside el-key
@@ -74,7 +74,7 @@
                     .el-percentage{
                         font-size: 0.75rem;
                         margin-right: 20px;
-                        color: var(--input-border);
+                        color: var(--subtext-color);
                         min-width: 40px;
                         text-align: left;
                     }

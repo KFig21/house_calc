@@ -1,18 +1,18 @@
 :root {
   --nav-height: 25px;
-  --button-background: #1fa53a;
+  --button-background: #1d9b36;
   --button-color: #f0f0f0;
 
   // Amortization table
   --tax-bar-color:#67a9f4;
   --interest-bar-color: #3472af;
-  --principal-bar-color: #1fa53a;
+  --principal-bar-color: var(--button-background);
   --active-dot-fill: black;
   --active-dot-stroke: white;
 
   // DTI slider
   --DTI-slider-height: 16px;
-  --DTI-green: #1fa53a;
+  --DTI-green: var(--button-background);
   --DTI-yellow: rgb(255, 202, 68);
   --DTI-red: rgb(241, 60, 96);
   --DTI-split-1a: 65%;
@@ -26,11 +26,13 @@
   --text-color: #ffffff;
   --input-background: #1a2130;
   --border-color: #465278;
-  --container-background:#333c59;
   --input-border: #7a7b80;
   --axis-color: #84858a;
   --balance-bar-color: white;
   --row-nth-color: #28334c;
+  --total-row-background: #2b354b;
+  --DTI-slider-color: white;
+  --subtext-color: #7a7b80;
 }
 
 [data-theme='night'] {
@@ -38,21 +40,25 @@
   --text-color: #ffffff;
   --input-background: #292a2c;
   --border-color: #4e5057;
-  --container-background:#333c59;
   --input-border: #7a7b80;
   --axis-color: #84858a;
   --balance-bar-color: white;
-  --row-nth-color: #28334c;
+  --row-nth-color: #18191a;
+  --total-row-background: #292a2c;
+  --DTI-slider-color: white;
+  --subtext-color: #7a7b80;
 }
 
 [data-theme='light'] {
-  --background: #f0f0f0;
+  --background: #ebebeb;
   --text-color: #000000;
-  --input-background: #f0f0f0;
-  --border-color: #cccccc;
-  --container-background: #e0dede;
-  --input-border: #ccc;
+  --input-background: #e4e4e4;
+  --border-color: #bcbcbc;
+  --input-border: #bcbcbc;
   --axis-color: #57585b;
   --balance-bar-color: black;
   --row-nth-color: #dfdfdf;
+  --total-row-background: #e4e4e4;
+  --DTI-slider-color: black;
+  --subtext-color: #757678;
 }

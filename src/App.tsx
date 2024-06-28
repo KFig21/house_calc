@@ -10,7 +10,7 @@ import LeftBar from './components/leftbar/leftbar';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="content">
         <LeftBar />
         <div className="dashboard">
