@@ -57,14 +57,12 @@
     .input-container{
         width: -webkit-fill-available;
         
-        // need to completely rebuild this to make it custom
         .dtiSlider{
-            // background: var(--button-background)
             display: flex;
             align-items: center;justify-content: center;
 
             .rc-slider-track {
-                background-color: transparent;
+                background-color: var(--background);
                 height: var(--DTI-slider-height);
                 border-radius: 100px;
             }
