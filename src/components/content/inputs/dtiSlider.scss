@@ -62,7 +62,7 @@
             align-items: center;justify-content: center;
 
             .rc-slider-track {
-                background-color: var(--background);
+                background-color: rgba(0, 0, 0, 0);
                 height: var(--DTI-slider-height);
                 border-radius: 100px;
             }
