@@ -32,46 +32,44 @@ const AmortizationModal: React.FC = () => {
         <div className={'modal-wrapper ' + (animation ? 'in' : 'out')}>
           {/* Modal Content */}
           <div className={'modal-container  ' + (animation ? 'in' : 'out')}>
-            <div>
-              <div
-                className="close-button"
-                onClick={() => handleCloseAnimation()}
-              ></div>
-              <div className="modal-title">Amortization Schedule</div>
-              <div className="schedule">
-                <div className="schedule-row header">
-                  <div></div>
-                  <div className="column-title principal">principal</div>
-                  <div className="column-title interest">interest</div>
-                  <div className="column-title fees">fees & tax</div>
-                  <div className="column-title balance">balance</div>
+            <div
+              className="close-button"
+              onClick={() => handleCloseAnimation()}
+            ></div>
+            <div className="modal-title">Amortization Schedule</div>
+            <div className="schedule">
+              <div className="schedule-row header">
+                <div></div>
+                <div className="column-title principal">principal</div>
+                <div className="column-title interest">interest</div>
+                <div className="column-title fees">fees & tax</div>
+                <div className="column-title balance">balance</div>
+              </div>
+              {amortizationSchedule?.data.map(
+                (year: AmortizationScheduleEntry) => {
+                  return (
+                    <div className="schedule-row">
+                      <div className="row-title">year {year.year}</div>
+                      <div>{formatToWholeDollarAmount(year.principal)}</div>
+                      <div>{formatToWholeDollarAmount(year.interest)}</div>
+                      <div>{formatToWholeDollarAmount(year.fees)}</div>
+                      <div>{formatToWholeDollarAmount(year.balance)}</div>
+                    </div>
+                  );
+                }
+              )}
+              <div className="schedule-row total">
+                <div className="row-title">Totals</div>
+                <div>{formatToWholeDollarAmount(results.housePrice)}</div>
+                <div>{formatToWholeDollarAmount(results.totalInterest)}</div>
+                <div>
+                  {formatToWholeDollarAmount(
+                    results.totalHOA +
+                      results.totalInsurance +
+                      results.totalPropertyTax
+                  )}
                 </div>
-                {amortizationSchedule?.data.map(
-                  (year: AmortizationScheduleEntry) => {
-                    return (
-                      <div className="schedule-row">
-                        <div className="row-title">year {year.year}</div>
-                        <div>{formatToWholeDollarAmount(year.principal)}</div>
-                        <div>{formatToWholeDollarAmount(year.interest)}</div>
-                        <div>{formatToWholeDollarAmount(year.fees)}</div>
-                        <div>{formatToWholeDollarAmount(year.balance)}</div>
-                      </div>
-                    );
-                  }
-                )}
-                <div className="schedule-row total">
-                  <div className="row-title">Totals</div>
-                  <div>{formatToWholeDollarAmount(results.housePrice)}</div>
-                  <div>{formatToWholeDollarAmount(results.totalInterest)}</div>
-                  <div>
-                    {formatToWholeDollarAmount(
-                      results.totalHOA +
-                        results.totalInsurance +
-                        results.totalPropertyTax
-                    )}
-                  </div>
-                  <div></div>
-                </div>
+                <div></div>
               </div>
             </div>
           </div>

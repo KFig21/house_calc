@@ -46,7 +46,7 @@
             margin-right: 12px;
 
             @include mobile{
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             &.green{
@@ -68,6 +68,7 @@
             color: var(--subtext-color);
 
             @include mobile{
+                margin-top: 2px;
                 font-size: 0.8rem;
             }
         }

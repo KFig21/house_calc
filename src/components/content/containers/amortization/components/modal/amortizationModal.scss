@@ -90,9 +90,11 @@
       overflow-y: overlay;
       overflow-x: hidden;
       position: relative;
-    //   width: 100%;
-    //   max-width: 576px;
       transition: all ease 1s;
+
+      @include mobile {
+        width: 90vw;
+      }
   
       &.in {
         animation: formUp 1s ease;
@@ -127,6 +129,10 @@
         max-height: 80vh;
         overflow: overlay;
         position: relative;
+
+        @include mobile {
+          width: 100%;
+        }
 
         .schedule-row{
             font-size: 0.8rem;
