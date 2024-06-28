@@ -29,7 +29,7 @@
             align-items: end;
             font-size: 0.75rem;
             font-weight: 500;
-            color: var(--axis-color);
+            color: var(--subtext-color);
     
             &.left{
                 justify-content: start;
@@ -76,10 +76,10 @@
 
     .yAxis, .xAxis{
         font-size: 14px;
-        fill: var(--axis-color);
+        fill: var(--subtext-color);
         
         line{
-            stroke: var(--axis-color);
-            }
+            stroke: var(--subtext-color);
+        }
     }
 }

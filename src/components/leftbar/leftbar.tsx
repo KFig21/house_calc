@@ -21,8 +21,13 @@ const LeftBar: React.FC = () => {
   return (
     <div className="leftbar">
       <div className="header">
-        <Logo />
-        <div className="header-text">Home Buying Calculator</div>
+        <div className="header-upper">
+          <Logo />
+          <div className="header-text">CalcHouse</div>
+        </div>
+        <div className="header-subtext">
+          Home Buying Budget & Mortgage Calculator
+        </div>
       </div>
       <div className="leftbar-container">
         <CalcTypeInput />

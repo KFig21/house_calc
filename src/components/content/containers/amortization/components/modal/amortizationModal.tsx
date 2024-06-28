@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 // ADD FEATURE: download to xls or csv
 
 const AmortizationModal: React.FC = () => {
-  const { amortizationSchedule } = useAppContext();
+  const { amortizationSchedule, results } = useAppContext();
   const [showModal, setShowModal] = useState(false);
   const [animation, setAnimation] = useState(true);
 
@@ -42,7 +42,7 @@ const AmortizationModal: React.FC = () => {
                   <div></div>
                   <div className="column-title principal">principal</div>
                   <div className="column-title interest">interest</div>
-                  <div className="column-title fees">fees</div>
+                  <div className="column-title fees">fees & tax</div>
                   <div className="column-title balance">balance</div>
                 </div>
                 {amortizationSchedule?.data.map(
@@ -58,9 +58,19 @@ const AmortizationModal: React.FC = () => {
                     );
                   }
                 )}
-                {/* CREATE A TOTALS ROW */}
-                {/* CREATE A TOTALS ROW */}
-                {/* CREATE A TOTALS ROW */}
+                <div className="schedule-row total">
+                  <div className="row-title">Totals</div>
+                  <div>{formatToWholeDollarAmount(results.housePrice)}</div>
+                  <div>{formatToWholeDollarAmount(results.totalInterest)}</div>
+                  <div>
+                    {formatToWholeDollarAmount(
+                      results.totalHOA +
+                        results.totalInsurance +
+                        results.totalPropertyTax
+                    )}
+                  </div>
+                  <div></div>
+                </div>
               </div>
             </div>
           </div>
