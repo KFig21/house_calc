@@ -27,6 +27,7 @@
             @include mobile {
                 flex-direction: column;
                 width: 100%;
+                gap: 10px;
             }
         }
         
@@ -72,6 +73,7 @@
                 .el-key{
                     display: flex;
                     flex-direction: row;
+                    align-items: baseline;
         
                     // within el-key
                     .el-name{
