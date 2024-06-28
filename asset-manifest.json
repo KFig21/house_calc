@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/house_calc/static/css/main.f99b950f.css",
+    "main.css": "/house_calc/static/css/main.9efa4c51.css",
     "main.js": "/house_calc/static/js/main.13c7d2d9.js",
     "index.html": "/house_calc/index.html",
-    "main.f99b950f.css.map": "/house_calc/static/css/main.f99b950f.css.map",
+    "main.9efa4c51.css.map": "/house_calc/static/css/main.9efa4c51.css.map",
     "main.13c7d2d9.js.map": "/house_calc/static/js/main.13c7d2d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.f99b950f.css",
+    "static/css/main.9efa4c51.css",
     "static/js/main.13c7d2d9.js"
   ]
 }
