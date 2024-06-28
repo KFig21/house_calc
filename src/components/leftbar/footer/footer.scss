@@ -1,0 +1,79 @@
+.footer {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500;
+  padding: 0px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+//   @include mobile {
+//     display: none;
+//   }
+//   @include mobileKeyboard {
+//     display: none;
+//   }
+
+  .footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 14px;
+    opacity: .5;
+
+    &:hover{
+        opacity: 1;
+        .made-by{
+            color: var(--text-color);
+        }
+    }
+
+    .made-by {
+      transition: all 0.2s ease;
+      cursor: default;
+      color: var(--subtext-color);
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: inherit;
+        color: var(--subtext-color);
+       
+        &:hover {
+            color: var(--button-background);
+        }
+
+        .kf-icon {
+            max-height: 23px;
+            max-width: 23px;
+            border-radius: 50px;
+            margin-right: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background-color: var(--subtext-color);
+
+            &:hover {
+              opacity: 1;
+              background-color:  var(--button-background);
+            }
+
+            g {
+                fill: var(--background)
+            }
+        }
+
+        .footer-icon {
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+    }
+  }
+}
