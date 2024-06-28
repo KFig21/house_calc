@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useAppContext } from '../../../contexts/appContext';
-import { formatToWholeDollarAmount } from '../../../utils/utils';
+import { useAppContext } from '../../../../../../contexts/appContext';
+import { formatToWholeDollarAmount } from '../../../../../../utils/utils';
 import './dtiSlider.scss';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';

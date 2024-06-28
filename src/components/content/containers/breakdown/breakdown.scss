@@ -20,6 +20,11 @@
         padding-bottom: 4px;
         border-bottom: solid 1px var(--border-color);
 
+        @include mobile{
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
         .key{
             margin-right: 15px;;
         }
@@ -36,8 +41,6 @@
         align-items: start;
         gap: 40px;
 
-
-
         @include mobile {
             grid-template-columns: 1fr;
         }
@@ -52,6 +55,10 @@
                 margin: 5px 0px;
                 font-weight: 600;
                 border-bottom: solid 1px var(--border-color);
+
+                @include mobile{
+                    font-size: 1.25rem;
+                }
             }
 
             .breakdown-element{
@@ -69,8 +76,12 @@
 
                 // outside el-key
                 .el-name{
-                    font-size:0.8em;
+                    font-size: 0.8rem;
                     margin-right: 20px;
+
+                    @include mobile{
+                        font-size: 0.9rem;
+                    }
                 }
 
                 .el-key{
@@ -79,12 +90,16 @@
         
                     // within el-key
                     .el-name{
-                        font-size:0.8em;
+                        font-size: 0.8rem;
                         margin-right: 6px;
+
+                        @include mobile{
+                            font-size: 0.9rem;
+                        }
                     }
                         
                     .el-percentage{
-                        font-size:0.8em;
+                        font-size: 0.8rem;
                         margin-right: 20px;
                         color: var(--subtext-color);
                         min-width: 40px;
@@ -97,6 +112,10 @@
                     font-weight: 400;
                     min-width: 40px;
                     text-align: right;
+
+                    @include mobile{
+                        font-size: 0.9rem;
+                    }
                 }
             }
         }

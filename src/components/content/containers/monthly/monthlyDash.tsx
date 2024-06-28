@@ -2,7 +2,7 @@ import React from 'react';
 import './monthlyDash.scss';
 import MonthlyFinances from './components/monthlyFinances';
 import MonthlyPayments from './components/monthlyPayments';
-import DtiInput from '../../inputs/dtiSlider';
+import DtiInput from './components/inputs/dtiSlider';
 
 const MonthlyDash: React.FC = () => {
   return (
