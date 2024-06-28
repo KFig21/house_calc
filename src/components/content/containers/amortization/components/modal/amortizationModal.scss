@@ -1,3 +1,5 @@
+@import './../../../../../../global.scss';
+
 //transition effects
 //transition effects
 
@@ -133,6 +135,11 @@
             // padding: 2px;
             align-items: center;
             justify-content: center;
+
+            @include mobile {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+              padding: 1px 0px;
+            }
 
             &.header{
                 position: sticky;
