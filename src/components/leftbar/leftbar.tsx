@@ -45,7 +45,7 @@ const LeftBar: React.FC = () => {
         <DeductCCfomDPinput />
         <IncomeTaxRateInput />
       </div>
-      <Footer />
+      {/* <Footer /> */}
       <ThemeToggleButton />
     </div>
   );

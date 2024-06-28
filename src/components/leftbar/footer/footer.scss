@@ -3,8 +3,7 @@
   line-height: 18px;
   font-weight: 500;
   padding: 0px;
-  width: 100%;
-  position: absolute;
+  width: -webkit-fill-available;
   bottom: 0px;
   display: flex;
   align-items: center;
@@ -22,7 +21,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 14px;
     opacity: .5;
 
     &:hover{

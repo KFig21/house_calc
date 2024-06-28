@@ -38,7 +38,7 @@
             }
 
             .breakdown-element{
-                padding: 2px 6px;
+                padding: 3px 6px;
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
@@ -52,7 +52,7 @@
 
                 // outside el-key
                 .el-name{
-                    font-size: 0.75rem;
+                    font-size: 0.8rem;
                     margin-right: 20px;
                 }
 
@@ -62,12 +62,12 @@
         
                     // within el-key
                     .el-name{
-                        font-size: 0.75rem;
+                        font-size: 0.8rem;
                         margin-right: 6px;
                     }
                         
                     .el-percentage{
-                        font-size: 0.75rem;
+                        font-size: 0.8rem;
                         margin-right: 20px;
                         color: var(--subtext-color);
                         min-width: 40px;
@@ -76,7 +76,7 @@
                 }
     
                 .el-value{
-                    font-size: 0.75rem;
+                    font-size: 0.8rem;
                     font-weight: 400;
                     min-width: 40px;
                     text-align: right;

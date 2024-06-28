@@ -16,7 +16,7 @@
         overflow: hidden;
 
         .dashboard {
-            padding: 20px;
+            padding: 20px 20px 10px 20px;
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -29,7 +29,6 @@
             .lower{
                 display: flex;
                 flex-grow: 2;
-                height: 100%;
             }
         }
     }

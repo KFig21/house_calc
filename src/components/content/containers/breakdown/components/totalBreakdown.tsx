@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppContext } from '../../../../../contexts/appContext';
-import './../breakdown.scss';
+import '../breakdown.scss';
 import { formatToWholeDollarAmount } from '../../../../../utils/utils';
 
 const TotalBreakdown: React.FC = () => {

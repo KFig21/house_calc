@@ -7,6 +7,7 @@ import {
   formatToWholeDollarAmount,
 } from '../../../../../../utils/utils';
 import SearchIcon from '@mui/icons-material/Search';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 // ADD FEATURE: download to xls or csv
 
@@ -82,7 +83,7 @@ const AmortizationModal: React.FC = () => {
         </div>
       )}
       {/* <div className='icon' onClick={() => handleOpenModal()}> */}
-      <SearchIcon className="icon" onClick={() => handleOpenModal()} />
+      <OpenInFullIcon className="icon" onClick={() => handleOpenModal()} />
       {/* </div> */}
     </>
   );

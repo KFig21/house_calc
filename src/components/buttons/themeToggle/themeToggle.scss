@@ -8,12 +8,12 @@
     display: flex;
     align-items: center; /* Center icon vertically */
     justify-content: center; /* Center icon horizontally */
-    width: 100%; /* Adjust width as needed */
+    width: 32px; /* Adjust width as needed */
     height: 32px; /* Adjust height as needed */
     border-radius: 50%; /* Make it circular */
-    // position: fixed;
-    // left: 10px;
-    // bottom: 10px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
     
     svg {
       font-size: 24px; /* Adjust icon size */
