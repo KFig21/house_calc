@@ -1,6 +1,6 @@
 import React from 'react';
 import './inputs.scss';
-import { useAppContext } from '../../../contexts/appContext';
+import { useAppContext } from '../../../../contexts/appContext';
 
 const CalcTypeInput: React.FC = () => {
   const { calcType, setCalcType } = useAppContext();

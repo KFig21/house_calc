@@ -1,7 +1,7 @@
 import React from 'react';
 import './inputs.scss';
-import CircleButton from '../../buttons/circleButton/circleButton';
-import { useAppContext } from '../../../contexts/appContext';
+import CircleButton from '../../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../../contexts/appContext';
 
 const IncomeTaxRateInput: React.FC = () => {
   const { incomeTaxRate, setIncomeTaxRate } = useAppContext();

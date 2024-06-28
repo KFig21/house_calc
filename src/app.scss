@@ -1,3 +1,9 @@
+@import './global.scss';
+
+*{
+    box-sizing: border-box;
+}
+
 .App {
     text-align: center;
     background-color: var(--background);
@@ -15,6 +21,12 @@
         height: 100vh;
         overflow: hidden;
 
+        @include mobile {
+            overflow-y: overlay;
+
+            height: calc(100vh - var(--nav-height));
+        }
+
         .dashboard {
             padding: 20px 20px 10px 20px;
             display: flex;
@@ -23,7 +35,11 @@
 
             .upper{
                 display: flex;
-                font-display: row;
+                flex-direction: row;
+
+                @include mobile {
+                    flex-direction: column;
+                }
             }
 
             .lower{

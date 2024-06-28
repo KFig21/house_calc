@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './inputs.scss';
-import CircleButton from '../../buttons/circleButton/circleButton';
-import { useAppContext } from '../../../contexts/appContext';
+import CircleButton from '../../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../../contexts/appContext';
 import {
   formatNumberWithCommas,
   parseCommaSeparatedNumber,
-} from '../../../utils/utils';
+} from '../../../../utils/utils';
 
-const HoaFeesInput: React.FC = () => {
-  const { hoaFees, setHoaFees } = useAppContext();
+const MonthlyDebtsInput: React.FC = () => {
+  const { monthlyDebts, setMonthlyDebts } = useAppContext();
   const [displayValue, setDisplayValue] = useState<string>(
-    formatNumberWithCommas(hoaFees)
+    formatNumberWithCommas(monthlyDebts)
   );
 
   useEffect(() => {
-    setDisplayValue(formatNumberWithCommas(hoaFees));
-  }, [hoaFees]);
+    setDisplayValue(formatNumberWithCommas(monthlyDebts));
+  }, [monthlyDebts]);
 
   const handleDecrease = () => {
-    const newValue = Math.max(0, hoaFees - 50);
-    setHoaFees(newValue);
+    const newValue = Math.max(0, monthlyDebts - 100);
+    setMonthlyDebts(newValue);
     setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleIncrease = () => {
-    const newValue = Math.min(99999, hoaFees + 50);
-    setHoaFees(newValue);
+    const newValue = Math.min(99999, monthlyDebts + 100);
+    setMonthlyDebts(newValue);
     setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const numericValue = parseCommaSeparatedNumber(e.target.value);
     if (!isNaN(numericValue) && numericValue >= 0 && numericValue <= 99999) {
-      setHoaFees(numericValue);
+      setMonthlyDebts(numericValue);
       setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
   return (
     <div className="horizontal-input">
-      <label>HOA Fees</label>
+      <label>Monthly Debts</label>
       <div className="input-container">
         <CircleButton
-          onClick={hoaFees > 0 ? handleDecrease : undefined}
-          disabled={hoaFees <= 0}
+          onClick={monthlyDebts > 0 ? handleDecrease : undefined}
+          disabled={monthlyDebts <= 0}
           text="-"
         />
         <input
@@ -53,14 +53,10 @@ const HoaFeesInput: React.FC = () => {
           min={0}
           max={99999}
         />
-        <CircleButton
-          onClick={hoaFees < 99900 ? handleIncrease : undefined}
-          disabled={hoaFees > 99900}
-          text="+"
-        />
+        <CircleButton onClick={handleIncrease} disabled={false} text="+" />
       </div>
     </div>
   );
 };
 
-export default HoaFeesInput;
+export default MonthlyDebtsInput;

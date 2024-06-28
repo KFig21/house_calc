@@ -1,0 +1,68 @@
+@import './../../../global.scss';
+
+.leftbar-mobile{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-top: solid 1px var(--border-color);
+    background-color: var(--background);
+    color: var(--text-color);
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    transition: all ease 1s;
+    z-index: 6;
+
+    &.show{
+        bottom: 0px;
+
+        .icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    &.hide{
+        bottom: -592px;
+    }
+
+    @include mobile {
+        display: flex;
+    }
+
+    .lever {
+        padding-top: 0px;
+
+        .icon {
+            transition: all ease .7s;
+            font-size: 40px;
+        }
+    }
+
+    .leftbar-mobile-container{
+        padding: 5px 20px 30px 20px;
+        
+        .break{
+            border-bottom: solid 1px var(--border-color);
+            height: 1px;
+            padding: 5px;
+            margin: 10px;
+        }
+    }
+}
+
+.leftbar-mobile-background{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(9px);
+  z-index: 5;
+  transition: all ease 0.5s;
+
+    &.show{
+        top: 0px;
+    }
+
+    &.hide{
+        top: -1000px;
+    }
+}

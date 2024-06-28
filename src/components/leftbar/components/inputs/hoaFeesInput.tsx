@@ -1,49 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import './inputs.scss';
-import CircleButton from '../../buttons/circleButton/circleButton';
-import { useAppContext } from '../../../contexts/appContext';
+import CircleButton from '../../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../../contexts/appContext';
 import {
   formatNumberWithCommas,
   parseCommaSeparatedNumber,
-} from '../../../utils/utils';
+} from '../../../../utils/utils';
 
-const HomeInsuranceInput: React.FC = () => {
-  const { homeInsurance, setHomeInsurance } = useAppContext();
+const HoaFeesInput: React.FC = () => {
+  const { hoaFees, setHoaFees } = useAppContext();
   const [displayValue, setDisplayValue] = useState<string>(
-    formatNumberWithCommas(homeInsurance)
+    formatNumberWithCommas(hoaFees)
   );
 
   useEffect(() => {
-    setDisplayValue(formatNumberWithCommas(homeInsurance));
-  }, [homeInsurance]);
+    setDisplayValue(formatNumberWithCommas(hoaFees));
+  }, [hoaFees]);
 
   const handleDecrease = () => {
-    const newValue = Math.max(0, homeInsurance - 50);
-    setHomeInsurance(newValue);
+    const newValue = Math.max(0, hoaFees - 50);
+    setHoaFees(newValue);
     setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleIncrease = () => {
-    const newValue = Math.min(99999, homeInsurance + 50);
-    setHomeInsurance(newValue);
+    const newValue = Math.min(99999, hoaFees + 50);
+    setHoaFees(newValue);
     setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const numericValue = parseCommaSeparatedNumber(e.target.value);
     if (!isNaN(numericValue) && numericValue >= 0 && numericValue <= 99999) {
-      setHomeInsurance(numericValue);
+      setHoaFees(numericValue);
       setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
   return (
     <div className="horizontal-input">
-      <label>Homeowners Ins.</label>
+      <label>HOA Fees</label>
       <div className="input-container">
         <CircleButton
-          onClick={homeInsurance > 0 ? handleDecrease : undefined}
-          disabled={homeInsurance <= 0}
+          onClick={hoaFees > 0 ? handleDecrease : undefined}
+          disabled={hoaFees <= 0}
           text="-"
         />
         <input
@@ -54,8 +54,8 @@ const HomeInsuranceInput: React.FC = () => {
           max={99999}
         />
         <CircleButton
-          onClick={homeInsurance < 99900 ? handleIncrease : undefined}
-          disabled={homeInsurance > 99900}
+          onClick={hoaFees < 99900 ? handleIncrease : undefined}
+          disabled={hoaFees > 99900}
           text="+"
         />
       </div>
@@ -63,4 +63,4 @@ const HomeInsuranceInput: React.FC = () => {
   );
 };
 
-export default HomeInsuranceInput;
+export default HoaFeesInput;

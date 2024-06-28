@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './inputs.scss';
-import CircleButton from '../../buttons/circleButton/circleButton';
-import { useAppContext } from '../../../contexts/appContext';
+import CircleButton from '../../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../../contexts/appContext';
 import {
   formatNumberWithCommas,
   parseCommaSeparatedNumber,
-} from '../../../utils/utils';
+} from '../../../../utils/utils';
 
 const PropertyTaxInput: React.FC = () => {
   const { propertyTaxRate, setPropertyTaxRate } = useAppContext();

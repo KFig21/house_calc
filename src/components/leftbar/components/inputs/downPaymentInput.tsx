@@ -1,51 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import './inputs.scss';
-import CircleButton from '../../buttons/circleButton/circleButton';
-import { useAppContext } from '../../../contexts/appContext';
+import CircleButton from '../../../buttons/circleButton/circleButton';
+import { useAppContext } from '../../../../contexts/appContext';
 import {
   formatNumberWithCommas,
   parseCommaSeparatedNumber,
-} from '../../../utils/utils';
+} from '../../../../utils/utils';
 
-const IncomeInput: React.FC = () => {
-  const { annualIncome, setAnnualIncome } = useAppContext();
+const DownPaymentInput: React.FC = () => {
+  const { downPayment, setDownPayment } = useAppContext();
   const [displayValue, setDisplayValue] = useState<string>(
-    formatNumberWithCommas(annualIncome)
+    formatNumberWithCommas(downPayment)
   );
 
   useEffect(() => {
-    setDisplayValue(formatNumberWithCommas(annualIncome));
-  }, [annualIncome]);
+    setDisplayValue(formatNumberWithCommas(downPayment));
+  }, [downPayment]);
 
   const handleDecrease = () => {
-    if (annualIncome > 1000) {
-      const newValue = annualIncome - 1000;
-      setAnnualIncome(newValue);
+    if (downPayment > 1000) {
+      const newValue = downPayment - 1000;
+      setDownPayment(newValue);
       setDisplayValue(formatNumberWithCommas(newValue));
     }
   };
 
   const handleIncrease = () => {
-    const newValue = annualIncome + 1000;
-    setAnnualIncome(newValue);
+    const newValue = downPayment + 1000;
+    setDownPayment(newValue);
     setDisplayValue(formatNumberWithCommas(newValue));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const numericValue = parseCommaSeparatedNumber(e.target.value);
     if (!isNaN(numericValue)) {
-      setAnnualIncome(numericValue);
+      setDownPayment(numericValue);
       setDisplayValue(formatNumberWithCommas(numericValue));
     }
   };
 
   return (
     <div className="horizontal-input">
-      <label>Annual Income</label>
+      <label>Down Payment</label>
       <div className="input-container">
         <CircleButton
-          onClick={annualIncome > 1000 ? handleDecrease : undefined}
-          disabled={annualIncome <= 1000}
+          onClick={downPayment > 1000 ? handleDecrease : undefined}
+          disabled={downPayment <= 1000}
           text="-"
         />
         <input type="text" value={displayValue} onChange={handleChange} />
@@ -55,4 +55,4 @@ const IncomeInput: React.FC = () => {
   );
 };
 
-export default IncomeInput;
+export default DownPaymentInput;

@@ -1,3 +1,5 @@
+@import './../../../../global.scss';
+
 .breakdown-container{
     display: flex;
     flex-direction: column;
@@ -6,6 +8,10 @@
     color: var(--text-color);
     padding: 20px;
     margin: 10px;
+
+    @include mobile{
+        margin: 10px 5px;
+    }
     
     .title{
         display: flex;    
@@ -29,6 +35,12 @@
         grid-template-columns: 1fr 1fr;
         align-items: start;
         gap: 40px;
+
+
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
         
         .breakdown-section{
             display: flex;

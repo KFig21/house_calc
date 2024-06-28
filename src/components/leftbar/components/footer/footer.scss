@@ -1,3 +1,5 @@
+@import './../../../../global.scss';
+
 .footer {
   font-size: 18px;
   line-height: 18px;
@@ -9,9 +11,9 @@
   align-items: center;
   justify-content: center;
 
-//   @include mobile {
-//     display: none;
-//   }
+  @include mobile {
+    padding-bottom: 55px;
+  }
 //   @include mobileKeyboard {
 //     display: none;
 //   }

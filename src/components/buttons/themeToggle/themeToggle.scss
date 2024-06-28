@@ -14,6 +14,20 @@
     position: absolute;
     left: 10px;
     bottom: 10px;
+
+    &.desktop {
+      top: unset;
+      right: unset;
+      left: 10px;
+      bottom: 10px;
+    }
+
+    &.mobile {
+      left: unset;
+      bottom: unset;
+      right: 10px;
+      top: calc(var(--nav-height - 16px));
+    }
     
     svg {
       font-size: 24px; /* Adjust icon size */

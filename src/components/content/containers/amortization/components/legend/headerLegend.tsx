@@ -1,7 +1,11 @@
 import React from 'react';
 import './legend.scss';
 
-const HeaderLegend: React.FC = () => {
+interface props {
+  type: string;
+}
+
+const HeaderLegend: React.FC<props> = ({ type }) => {
   const LegendData = [
     { type: 'rect', dataKey: 'fees' },
     { type: 'rect', dataKey: 'interest' },
@@ -22,7 +26,7 @@ const HeaderLegend: React.FC = () => {
   );
 
   return (
-    <div className="legend">
+    <div className={`legend ${type}`}>
       {LegendData.map((el: any) => {
         return (
           <div className={`legend-item  ${el['dataKey']}`}>

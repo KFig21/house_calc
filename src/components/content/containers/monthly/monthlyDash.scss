@@ -1,3 +1,5 @@
+@import './../../../../global.scss';
+
 .monthly-container{
     display: flex;
     flex-direction: column;
@@ -6,7 +8,11 @@
     color: var(--text-color);
     padding: 20px;
     margin: 10px;
-    
+
+    @include mobile{
+        margin: 10px 5px;
+    }
+
     .title{
         font-weight: 500;
         font-size: 1.25rem;
@@ -23,6 +29,11 @@
             flex-direction: row;
             gap: 30px;
             margin-top: 10px;
+
+            @include mobile {
+                flex-direction: column;
+                width: 100%;
+            }
         }
         
         .breakdown-section{

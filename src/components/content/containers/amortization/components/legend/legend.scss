@@ -1,9 +1,18 @@
+@import './../../../../../../global.scss';
+
 .legend{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    // height: min-content;
+
+    &.mobile {
+        display: none;
+        
+        @include mobile{
+            display: flex;
+        }
+    }
 
     .legend-item{
         padding: 0px 8px;

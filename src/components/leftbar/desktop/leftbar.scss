@@ -1,9 +1,15 @@
+@import './../../../global.scss';
+
 .leftbar{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border-right: solid 1px var(--border-color);
     position: relative;
+
+    @include mobile {
+        display: none;
+    }
 
     .header {
         display: flex;

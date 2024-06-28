@@ -1,5 +1,7 @@
+@import './../../global.scss';
+
 .header {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -8,7 +10,13 @@
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
     border-bottom: solid 1px var(--border-color);
     position: relative;
-    height: var(--nav-height);
+
+    @include mobile {
+      height: var(--nav-height);
+      display: flex;
+      position: sticky;
+      top: 0px;
+    }
 
     .header-text {
       margin: 0;

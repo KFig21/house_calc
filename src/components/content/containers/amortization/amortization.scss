@@ -1,7 +1,8 @@
+@import './../../../../global.scss';
+
 .am-container{
     display: flex;
     flex-direction: column;
-    // background-color: var(--container-background);
     border: solid 1px var(--border-color);
     border-radius: 5px;
     color: var(--text-color);
@@ -9,68 +10,150 @@
     margin: 10px;
     width: 100%;
 
+    @include mobile {
+        height: 50vh;
+        margin: 10px 5px;
+        overflow: hidden;
+    }
+
     .am-header{
         display: flex;
         justify-content: space-between;
+
+        &.desktop{
+            
+            @include mobile {
+                display: none;
+            }
+            
+            .title{
+                font-weight: 500;
+                font-size: 1.25rem;
+                display: flex;
+                align-items: center;
+                border-bottom: solid 1px var(--border-color);
+                padding-bottom: 4px;
+            }
+            
+            .yAxisTitle {
+                height: 100%;
+                width: 0px;
+                display: flex;
+                align-items: end;
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: var(--subtext-color);
         
-        .title{
-            font-weight: 500;
-            font-size: 1.25rem;
-            display: flex;
-            align-items: center;
-            border-bottom: solid 1px var(--border-color);
-            padding-bottom: 4px;
+                &.left{
+                    justify-content: start;
+                }
+                &.right{
+                    justify-content: end;
+                }
+            }
         }
         
-        .yAxisTitle {
-            height: 100%;
-            width: 0px;
-            display: flex;
-            align-items: end;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--subtext-color);
-    
-            &.left{
-                justify-content: start;
+        &.mobile{
+            display: none;
+            width: 1000px;
+            
+            @include mobile {
+                display: flex;
+                flex-direction: column;
             }
-            &.right{
-                justify-content: end;
+            
+            .title{
+                font-weight: 500;
+                font-size: 1.25rem;
+                display: flex;
+                align-items: center;
+                border-bottom: solid 1px var(--border-color);
+                padding-bottom: 4px;
+
+                @include mobile {
+                    width: min-content;
+                    white-space: nowrap;
+                    margin-bottom: 10px;
+                }
             }
         }
+
     }
 
-    .table-container{
-        display: flex;
-        flex-direction: row;
+    .table-wrapper{
         height: 100%;
 
-        .fees{
-            fill: var(--tax-bar-color);
+        @include mobile {
+            width: 100%;
+            overflow-x: scroll;
         }
 
-        .interest{
-            fill: var(--interest-bar-color);
-        }
+        .table-container{
+            display: flex;
+            flex-direction: row;
+            height: 100%;
 
-        .principal{
-            fill: var(--principal-bar-color);
-        }
-
-        .balance{
-            circle {
-                fill: var(--balance-bar-color);
-                stroke: var(--balance-bar-color);
+            @include mobile {
+                width: 1000px;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                flex-direction: column;
             }
+
+            .fees{
+                fill: var(--tax-bar-color);
+            }
+
+            .interest{
+                fill: var(--interest-bar-color);
+            }
+
+            .principal{
+                fill: var(--principal-bar-color);
+            }
+
+            .balance{
+                circle {
+                    fill: var(--balance-bar-color);
+                    stroke: var(--balance-bar-color);
+                }
+                    
+                path{
+                    stroke: var(--balance-bar-color);
+                }
+            }
+
+            .active-dot{
+                fill: var(--active-dot-fill);
+                stroke: var(--active-dot-stroke);
+            }
+
+            .axis {
+                display: none;
+
+                @include mobile {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+    
+                    .yAxisTitle {
+                        height: 100%;
+                        width: 0px;
+                        display: flex;
+                        align-items: end;
+                        font-size: 0.75rem;
+                        font-weight: 500;
+                        color: var(--subtext-color);
                 
-            path{
-                stroke: var(--balance-bar-color);
+                        &.left{
+                            justify-content: start;
+                        }
+                        &.right{
+                            justify-content: end;
+                        }
+                    }
+                }
             }
-        }
-
-        .active-dot{
-            fill: var(--active-dot-fill);
-            stroke: var(--active-dot-stroke);
         }
     }
 

@@ -1,3 +1,5 @@
+@import './../../../global.scss';
+
 .dti-container{
     display: flex;
     flex-direction: column;
@@ -26,6 +28,12 @@
 
     .below-input{
         font-size: 0.75rem;
+
+        @include mobile{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         
         .dti-label {
             font-size: 0.8rem;

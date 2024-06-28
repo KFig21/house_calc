@@ -5,15 +5,16 @@ import Header from './components/header/header';
 import Breakdown from './components/content/containers/breakdown/breakdown';
 import MonthlyDash from './components/content/containers/monthly/monthlyDash';
 import AmortizationSchedule from './components/content/containers/amortization/amortization';
-import LeftBar from './components/leftbar/leftbar';
-import Footer from './components/leftbar/footer/footer';
+import LeftBarDesktop from './components/leftbar/desktop/leftbar';
+import Footer from './components/leftbar/components/footer/footer';
+import LeftBarMobile from './components/leftbar/mobile/leftbarMobile';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <div className="content">
-        <LeftBar />
+        <LeftBarDesktop />
         <div className="dashboard">
           <div className="upper">
             <MonthlyDash />
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Footer />
         </div>
       </div>
+      <LeftBarMobile />
     </div>
   );
 };

@@ -1,9 +1,15 @@
+@import './../../../../global.scss';
+
 .horizontal-input {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   height: 35px;
+
+  @include mobile {
+    margin: 5px 0px;
+  }
 
   &.disabled {
     opacity: .5;
@@ -17,6 +23,10 @@
     font-weight: 600;
     color: var(--text-color);
     white-space: nowrap;
+
+    @include mobile {
+      font-size: 0.9rem;
+    }
   }
 
   .input-container {
@@ -38,6 +48,11 @@
       border: 1px solid var(--input-border);
       border-radius: 5px;
       box-sizing: border-box;
+
+
+      @include mobile {
+        font-size: 0.9rem;
+      }
 
       &:focus{
         outline: none;
