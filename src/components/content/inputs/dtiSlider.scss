@@ -59,14 +59,35 @@
         
         .dtiSlider{
             display: flex;
-            align-items: center;justify-content: center;
+            align-items: center;
+            justify-content: center;
 
             .rc-slider-track {
-                background-color: rgba(0, 0, 0, 0);
                 height: var(--DTI-slider-height);
                 border-radius: 100px;
+                background-color: rgba(0,0,0,0);
             }
 
+            // set color of the track to match DTI
+            &.green{
+                .rc-slider-track {
+                    background: var(--DTI-green);
+                }
+            }
+
+            &.yellow{
+                .rc-slider-track {
+                    background: var(--DTI-yellow);
+                }
+            }
+
+            &.red{
+                .rc-slider-track {
+                    background: var(--DTI-red);
+                }
+            }
+
+            // rail behind the track
             .rc-slider-rail {
                 background: linear-gradient(to right, 
                     var(--DTI-green) 0%, 
@@ -85,6 +106,7 @@
                 height: var(--DTI-slider-height);
                 border: solid 1px var(--background);
                 border-radius: 100px;
+                opacity: .5;
             }
 
             .rc-slider-handle {
@@ -101,4 +123,9 @@
             }
         }
     }
+}
+
+
+.rc-slider-disabled {
+    background-color: rgba(0,0,0,0) !important;
 }

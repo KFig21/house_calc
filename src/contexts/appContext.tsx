@@ -105,7 +105,7 @@ const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [calcType, setCalcType] = useState<boolean>(true);
-  const [houseValue, setHouseValue] = useState<number>(400000);
+  const [houseValue, setHouseValue] = useState<number>(376841);
   const [annualIncome, setAnnualIncome] = useState<number>(100000);
   const [downPayment, setDownPayment] = useState<number>(100000);
   const [loanTerm, setLoanTerm] = useState<number>(30);

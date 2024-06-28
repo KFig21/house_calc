@@ -37,7 +37,11 @@ const DtiInput: React.FC = () => {
           value={!calcType ? sliderValue : dtiPercentage}
           onChange={(e: any) => handleChange(e)}
           disabled={!calcType}
-          className="dtiSlider"
+          className={`dtiSlider
+            ${dtiPercentage < 37 && 'green'}
+            ${dtiPercentage > 36 && dtiPercentage < 44 && 'yellow'}
+            ${dtiPercentage > 43 && 'red'}
+          `}
         />
       </div>
       <div className="below-input">
