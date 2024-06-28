@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/house_calc/static/css/main.69135784.css",
+    "main.js": "/house_calc/static/js/main.2e840c3f.js",
+    "index.html": "/house_calc/index.html",
+    "main.69135784.css.map": "/house_calc/static/css/main.69135784.css.map",
+    "main.2e840c3f.js.map": "/house_calc/static/js/main.2e840c3f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.69135784.css",
+    "static/js/main.2e840c3f.js"
+  ]
+}
