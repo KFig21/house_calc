@@ -24,10 +24,10 @@ $width: 800px;
   }
 }
 
-@mixin mobileKeyboard {
-  @media (max-height: 500px) {
-    @media (max-width: 500px) {
-      @content;
+@mixin notMobile {
+    @media (min-height: 421px) {
+      @media (min-width: #{$width}) {
+        @content;
+      }
     }
-  }
 }

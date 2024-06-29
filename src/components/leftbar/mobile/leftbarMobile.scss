@@ -58,6 +58,10 @@
   z-index: 5;
   transition: all ease 0.5s;
 
+    @include notMobile {
+        display: none;
+    }
+
     &.show{
         top: 0px;
     }
