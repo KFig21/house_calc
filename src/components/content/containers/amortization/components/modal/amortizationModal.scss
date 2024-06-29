@@ -144,7 +144,8 @@
 
             @include mobile {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-              padding: 1px 0px;
+              // padding: 1px 0px;
+              line-height: 20px;
             }
 
             &.header{
@@ -192,7 +193,7 @@
             &.total {
               border-top: solid 1px var(--border-color);
               font-weight: 600;
-              padding: 2px 0px;
+              line-height: 28px;
               background-color: var(--input-background);
             }
         }
