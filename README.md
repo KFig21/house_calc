@@ -23,3 +23,7 @@
   <li>Responsive design for desktop and mobile</li>
   <li>Light, Dark, & Night themes</li>
  </ul>
+
+---
+
+<h3>Thanks for checking out my project! Any && all feedback is appreciated!</h3>
