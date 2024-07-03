@@ -6,7 +6,6 @@ import {
   closeAnimation,
   formatToWholeDollarAmount,
 } from '../../../../../../utils/utils';
-import SearchIcon from '@mui/icons-material/Search';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 // ADD FEATURE: download to xls or csv
