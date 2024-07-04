@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import './amortizationModal.scss';
 import { useAppContext } from '../../../../../../contexts/appContext';
 import { AmortizationScheduleEntry } from '../../../../../../utils/ammortizationCalc';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import React, { useState } from 'react';
+import './amortizationModal.scss';
 import {
   closeAnimation,
   formatToWholeDollarAmount,
 } from '../../../../../../utils/utils';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 // ADD FEATURE: download to xls or csv
 
@@ -79,9 +79,8 @@ const AmortizationModal: React.FC = () => {
           ></div>
         </div>
       )}
-      {/* <div className='icon' onClick={() => handleOpenModal()}> */}
+      {/* Button to open modal */}
       <OpenInFullIcon className="icon" onClick={() => handleOpenModal()} />
-      {/* </div> */}
     </>
   );
 };
