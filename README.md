@@ -19,7 +19,7 @@
   <li>House purchasing budget calculation</li>
   <li>Mortgage payment calculation</li>
   <li>Amortization schedule</li>
-  <li>Interface that dynamically updates instantly with every input</li>
+  <li>Interface that dynamically updates with every input</li>
   <li>Responsive design for desktop and mobile</li>
   <li>Light, Dark, & Night themes</li>
  </ul>
