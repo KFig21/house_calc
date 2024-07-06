@@ -86,7 +86,7 @@
       padding: 15px;
       z-index: 10;
       border-radius: 4px;
-      max-height: 80vh;
+      max-height: 95vh;
       overflow-y: overlay;
       overflow-x: hidden;
       position: relative;
@@ -94,6 +94,7 @@
 
       @include mobile {
         width: 90vw;
+        max-height: 80vh;
       }
   
       &.in {
@@ -126,7 +127,6 @@
       .schedule {
         display: flex;
         flex-direction: column;
-        max-height: 80vh;
         overflow: overlay;
         position: relative;
 
